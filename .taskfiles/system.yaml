@@ -1,0 +1,5 @@
+version: 3
+
+tasks:
+  list-units:
+  - systemctl list-units

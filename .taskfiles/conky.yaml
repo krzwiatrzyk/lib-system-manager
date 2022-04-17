@@ -1,0 +1,17 @@
+version: 3
+
+tasks:
+  conky:install:
+  - sudo apt-get install conky-all
+
+  conky-manager:install:
+  - sudo apt update && sudo apt install conky-manager2 -y
+
+  conky:stop:
+  - killall conky
+
+  conky:start:
+  - conky
+
+  conky:copy-dotfile:
+  - cp dotfiles/.conkyrc ~/

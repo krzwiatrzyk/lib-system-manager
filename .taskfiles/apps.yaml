@@ -1,0 +1,58 @@
+version: 3
+
+tasks:
+  variety:install:
+    cmds:
+    - sudo apt-get install variety -y
+    desc: Variety is automatic wallpaper changer
+
+  neofetch:install:
+    cmds:
+    - sudo apt  install -y neofetch
+    desc: Neofetch displays system information 
+
+  cockpit:install:
+    cmds:
+    - sudo apt-get install -y cockpit
+    - systemctl enable cockpit
+    - systemctl start cockpit # port 9090
+    desc: Cockpit is a Web UI OS manager
+
+  lens:install:
+    cmds:
+    - sudo snap install kontena-lens --classic
+    desc: Lens is a Kubernetes manager with UI
+
+  helm:install:
+    cmds:
+    - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    desc: Helm is a Kubernetes chart manager
+
+  stacer:install:
+    cmds:
+    - sudo snap install stacer
+    desc: Stacer is a Linux monitoring tools with nice UI
+
+  arkade:install:
+  - curl -sLS https://get.arkade.dev | sudo sh
+
+  k9s:install:
+  - arkade get k9s
+
+  argocd:install:
+  - arkade get argocd
+
+  gnome-shell-extensions:install:
+  - sudo apt install gnome-shell-extensions -y
+  - sudo apt install chrome-gnome-shell -y
+
+  flatpack:
+  - sudo apt install flatpak -y
+  - sudo apt install gnome-software-plugin-flatpak -y
+  - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+  xclip:
+  - sudo apt-get install xclip -y
+
+  apache-utils:
+  - sudo apt-get install apache2-utils -y

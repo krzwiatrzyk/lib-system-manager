@@ -1,0 +1,30 @@
+version: 3
+
+vars:
+  STATUS_FILES_PATH: .taskfiles/statusfiles
+  USER_STATUS_FILES_PATH: ~/.statusfiles
+
+includes:
+  zsh: .taskfiles/zsh.yaml
+  apps: .taskfiles/apps.yaml
+  conky: .taskfiles/conky.yaml
+  dotfiles: .taskfiles/dotfiles.yaml
+  k3s: .taskfiles/k3s.yaml
+  server: .taskfiles/server.yaml
+  system: .taskfiles/system.yaml
+
+tasks:
+  default:
+  - task: zsh:install-all
+
+  list:
+  - task -l
+
+  argo-generate-password:
+    cmds:
+    - htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/' && echo 
+    - echo $(date +%FT%T%Z)
+
+# to test: webmin, usermin, cloudmin, virtualmin , virtualmind, cloudpanel, aapanel
+
+
