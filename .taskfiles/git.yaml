@@ -22,11 +22,11 @@ tasks:
     - task: add
     - |
       DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-      git commit -m "feat(fast): ${DATE}"
+      git commit -m "feat(fast): ${DATE}" | echo
     - task: push
 
-  add: git add .
-  push: git push origin main
+  add: git add . | echo 
+  push: git push origin main | echo
 
   fix: 
   - find .git/objects/ -size 0 -delete 
