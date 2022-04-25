@@ -31,6 +31,9 @@ tasks:
     - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
     desc: Helm is a Kubernetes chart manager
 
+  helm-secrets:install:
+  - helm plugin install https://github.com/jkroepke/helm-secrets --version v3.13.0
+
   stacer:install:
     cmds:
     - sudo snap install stacer
