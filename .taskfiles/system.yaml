@@ -3,3 +3,14 @@ version: 3
 tasks:
   list-units:
   - systemctl list-units
+
+  show-used-dns:
+    cmds:
+      - systemd-resolve --status
+
+  
+  ssh:generate-key:
+    dir: temp
+    cmds:
+    - ssh-keygen -t rsa -b 4096 -f ssh_key -C {{ .CLI_ARGS }}
+  

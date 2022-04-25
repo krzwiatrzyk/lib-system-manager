@@ -6,12 +6,12 @@ vars:
 
 includes:
   zsh: .taskfiles/zsh.yaml
-  apps: .taskfiles/apps.yaml
+  tools: .taskfiles/tools.yaml
   conky: .taskfiles/conky.yaml
   dotfiles: .taskfiles/dotfiles.yaml
-  k3s: .taskfiles/k3s.yaml
   server: .taskfiles/server.yaml
   system: .taskfiles/system.yaml
+  git: .taskfiles/git.yaml
 
 tasks:
   default:
