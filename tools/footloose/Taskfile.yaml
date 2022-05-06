@@ -1,0 +1,12 @@
+version: 3
+
+tasks:
+  install: |
+    curl -Lo footloose https://github.com/weaveworks/footloose/releases/download/0.6.3/footloose-0.6.3-linux-x86_64
+    chmod +x footloose
+    sudo mv footloose /usr/local/bin/
+
+  create-config: footloose config create --replicas 3
+  create-fls: footloose create -c footloose.yaml
+  show: footloose show
+  delete: footloose delete

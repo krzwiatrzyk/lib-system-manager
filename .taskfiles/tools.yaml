@@ -1,0 +1,171 @@
+version: 3
+
+tasks:
+  list:
+    task --list-all | grep tools | grep ":install"
+
+  variety:install:
+    cmds:
+    - sudo apt-get install variety -y
+    desc: Variety is automatic wallpaper changer
+
+  neofetch:install:
+    cmds:
+    - sudo apt  install -y neofetch
+    desc: Neofetch displays system information 
+
+  cockpit:install:
+    cmds:
+    - sudo apt-get install -y cockpit
+    - systemctl enable cockpit
+    - systemctl start cockpit # port 9090
+    desc: Cockpit is a Web UI OS manager
+
+  lens:install:
+    cmds:
+    - sudo snap install kontena-lens --classic
+    desc: Lens is a Kubernetes manager with UI
+
+  helm:install:
+    cmds:
+    - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    desc: Helm is a Kubernetes chart manager
+
+  helm-secrets:install:
+  - helm plugin install https://github.com/jkroepke/helm-secrets --version v3.13.0
+
+  stacer:install:
+    cmds:
+    - sudo snap install stacer
+    desc: Stacer is a Linux monitoring tools with nice UI
+
+  argocd:install:
+  - arkade get argocd
+
+  gnome-shell-extensions:install:
+  - sudo apt install gnome-shell-extensions -y
+  - sudo apt install chrome-gnome-shell -y
+
+  flatpack:
+  - sudo apt install flatpak -y
+  - sudo apt install gnome-software-plugin-flatpak -y
+  - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+  xclip:
+  - sudo apt-get install xclip -y
+
+  apache-utils:
+  - sudo apt-get install apache2-utils -y
+
+  podman:install:
+    cmds:
+    - source /etc/os-release && sudo echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+    - source /etc/os-release && sudo curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | sudo apt-key add -
+    - sudo apt-get update
+    - sudo apt-get -y install podman
+    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    status:
+    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    
+  rich:install:
+    desc: Install rick-cli
+    cmds:
+    - pip install rich-cli
+
+  kui:install:
+    desc: Install kui
+    dir: temp
+    cmds:
+    - wget -nc https://github.com/kubernetes-sigs/kui/releases/download/v11.4.4/Kui-linux-x64.zip 
+    - unzip Kui-linux-x64.zip
+    - sudo mkdir /usr/local/kui | true
+    - sudo mv Kui-linux-x64/* /usr/local/kui/
+    - rmdir Kui-linux-x64
+    - rm Kui-linux-x64.zip 
+
+  nodejs:install:
+    cmds:
+    - curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    - sudo apt-get update
+    - sudo apt install nodejs -y
+    - node -v
+    - sudo npm install -g npm
+  
+  git-conventional-commits:install:
+    deps:
+    - install:nodejs
+    cmds:
+    - sudo npm install --global git-conventional-commits
+
+  git-conventional-commits:init:
+    cmds:
+    - git-conventional-commits init
+
+  k3d:install:
+    cmds:
+    - wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+  
+  flux:install:
+    cmds:
+    - curl -s https://fluxcd.io/install.sh | sudo bash
+
+  kubescape:install:
+    desc: Install Kubescape
+    cmds:
+    - curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
+
+  kubescape:scan:
+    desc: Scan current cluster and send output to SaaS
+    summary: |
+      To view results, visit: 
+      https://portal.armo.cloud
+
+    cmds:
+    - kubescape scan --submit --account=8023bf5f-e29d-4f3f-af91-391a9eebd366
+    - task tools:kubescape:scan --summary
+
+  k9s:install:
+    desc: Install or update K9s
+    cmds:
+    - arkade get k9s
+    preconditions:
+    - arkade
+    summery: |
+      Alternative command (if you don't want to use arkade)
+      > curl -sS https://webinstall.dev/k9s | bash
+
+  arkade:install:
+    desc: Install or update arkade
+    cmds:
+    - curl -sLS https://get.arkade.dev | sudo sh
+
+  dialog:install:
+    desc: Install dialog
+    cmds:
+    - sudo apt-get install dialog
+
+  yq:install:
+    desc: Install yq
+    env:
+      BINARY: yq_linux_amd64
+      VERSION: v4.24.2 
+    cmds:
+    - sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
+    - sudo chmod +x /usr/bin/yq
+    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    status:
+    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+
+  tsh:install:
+    desc: Install tcl and tsh
+    cmds:
+    - curl -L -O https://get.gravitational.com/teleport-v9.0.0-linux-amd64-bin.tar.gz
+    - tar -xzf teleport-v9.0.0-linux-amd64-bin.tar.gz
+    - sudo mv teleport/tsh /usr/local/bin/tsh
+    - sudo mv teleport/tctl /usr/local/bin/tctl
+
+  podman-desktop-companion:install:
+    cmds:
+    - wget -nc https://github.com/iongion/podman-desktop-companion/releases/download/4.0.3-rc.5/podman-desktop-companion-x86_64-4.0.3-rc.5.AppImage
+    - chmod +x podman-desktop-companion-x86_64-4.0.3-rc.5.AppImage
+    - mv podman-desktop-companion-x86_64-4.0.3-rc.5.AppImage ~/.local/bin/podman-desktop-companion
