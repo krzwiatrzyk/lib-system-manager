@@ -12,12 +12,9 @@ includes:
   server: .taskfiles/server.yaml
   system: .taskfiles/system.yaml
   git: .taskfiles/git.yaml
-<<<<<<< HEAD
-=======
   footloose: 
     taskfile: tools/footloose/Taskfile.yaml
     dir: tools/footloose
->>>>>>> a01e8159c2b82e724ac9793f7eabca672f0b1d76
 
 tasks:
   default:

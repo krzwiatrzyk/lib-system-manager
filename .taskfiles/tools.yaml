@@ -162,9 +162,6 @@ tasks:
     - curl -L -O https://get.gravitational.com/teleport-v9.0.0-linux-amd64-bin.tar.gz
     - tar -xzf teleport-v9.0.0-linux-amd64-bin.tar.gz
     - sudo mv teleport/tsh /usr/local/bin/tsh
-<<<<<<< HEAD
-    - sudo mv teleport/tctl /usr/local/bin/tctl
-=======
     - sudo mv teleport/tctl /usr/local/bin/tctl
 
   podman-desktop-companion:install:
@@ -172,4 +169,3 @@ tasks:
     - wget -nc https://github.com/iongion/podman-desktop-companion/releases/download/4.0.3-rc.5/podman-desktop-companion-x86_64-4.0.3-rc.5.AppImage
     - chmod +x podman-desktop-companion-x86_64-4.0.3-rc.5.AppImage
     - mv podman-desktop-companion-x86_64-4.0.3-rc.5.AppImage ~/.local/bin/podman-desktop-companion
->>>>>>> a01e8159c2b82e724ac9793f7eabca672f0b1d76
