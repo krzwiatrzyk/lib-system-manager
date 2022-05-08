@@ -1,0 +1,173 @@
+#cloud-config
+
+users:
+  - default
+  - name: jack
+    gecos: Jack Smith
+    #salted pass - 123456
+    passwd: $6$MopRIw4CfxgHrwKt$cP2VJSc0UPGgjy/tl/co0fsJnud5VLaSZvFhfYv3qZ7A1AYe4/BLeVeVDRjHZ/b2kL96ZmfwKAg5jr2kT9nkT0
+    groups: users, adm
+    lock-passwd: False
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+  - name: stephen
+    gecos: Stephen King
+    groups: users, adm
+    lock-passwd: False
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    #put own ssh key here
+    ssh-authorized-keys:
+      - <user public ssh key>
+
+ssh-authorized-keys:
+  - <public ssh key for the default user>
+
+ssh_pwauth: True
+chpasswd:
+  expire: False
+
+packages:
+  - cockpit
+  - nginx
+  - firewalld
+
+rh_subscription:
+    username: <username or email>
+    password: <password>
+    auto-attach: true
+
+write_files:
+- path: /run/user/awk-add-kernel-boot-settings.txt
+  permissions: '0666'
+  content: |
+    BEGIN {
+      #The variables must be declared here, otherwise they won't be seen in the END part
+      FS="@@"
+      OFS="="
+      RS="\n"
+      gcmd="nomodeset crashkernel=auto LANG=en_US.UTF-8 console=tty0 console=ttyS0,115200n8 rhgb quiet"
+      gt="serial console"
+      gsk="serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1"
+      f_gt=0
+      f_gsk=0
+    }
+    
+    {
+    if($1 == "GRUB_CMDLINE_LINUX=" || $1 == "GRUB_CMDLINE_LINUX_DEFAULT=")
+    {
+      if (NF==1)
+        gl=sprintf("%s\"%s\"",$1,gcmd)
+      else
+        gl=sprintf("%s%s %s\"",$1,$2,gcmd)
+      print gl > "/run/user/modified_grub"
+    }
+    else if($1 == "GRUB_TERMINAL=" || $1 == "GRUB_TERMINAL_OUTPUT=")
+    {
+      f_gt=1
+      if (NF==1)
+        gl=sprintf("%s\"%s\"",$1,gt)
+      else
+        gl=sprintf("%s%s %s\"",$1,$2,gt)
+      print gl > "/run/user/modified_grub"
+    }
+    else if($1 == "GRUB_SERIAL_COMMAND=")
+    {
+      f_gsk=1
+      if (NF==1)
+        gl=sprintf("%s\"%s\"",$1,gsk)
+      else
+        gl=sprintf("%s%s %s\"",$1,$2,gsk)
+      print gl > "/run/user/modified_grub"
+    }
+    else
+      print $0 > "/run/user/modified_grub"
+    }
+    END {
+      if(f_gt==0)
+      {
+        gl=sprintf("GRUB_TERMINAL=\"%s\"",gt)
+        print gl > "/run/user/modified_grub"
+      }
+      if(f_gsk==0)
+      {
+        gl=sprintf("GRUB_SERIAL_COMMAND=\"%s\"",gsk)
+        print gl > "/run/user/modified_grub"
+      }
+    }
+- path: /run/user/whoami.sh
+  permissions: '0700'
+  content: |
+     #!/bin/bash
+     set -x
+     set -e
+     whoami
+- path: /run/user/nginx.sh
+  permissions: '0700'
+  content: |
+    #!/bin/sh
+    systemctl enable --now cockpit.socket
+    systemctl enable --now nginx
+    service nginx restart
+    
+yum_repos:
+  # The name of the repository
+  epel-release-7:
+    # This one is required!
+    # replace <version> with tha actual version which is going to be insalled
+    baseurl: http://download.fedoraproject.org/pub/epel/7/$basearch
+    enabled: true
+    failovermethod: priority
+    gpgcheck: true
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+    # replace <version> with tha actual version which is going to be insalled
+    name: Extra Packages for Enterprise Linux 7 - $basearch
+
+  # The name of the repository
+  epel-release-8:
+    # This one is required!
+    # replace <version> with tha actual version which is going to be insalled
+    baseurl: http://download.fedoraproject.org/pub/epel/8/$basearch
+    enabled: true
+    failovermethod: priority
+    gpgcheck: true
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+    # replace <version> with tha actual version which is going to be insalled
+    name: Extra Packages for Enterprise Linux 8 - $basearch
+
+output:
+  init:
+    output: "> /var/log/cloud-init.out"
+    error: "> /var/log/cloud-init.err"
+  config: "tee -a /var/log/cloud-config.log"
+  final:
+    - ">> /var/log/cloud-final.out"
+    - "/var/log/cloud-final.err"
+    
+runcmd:
+  - [ sed, -i, -e, '$ a\nameserver 169.254.169.254', /etc/resolv.conf ]
+  - [ sh, -c, /run/user/whoami.sh ]
+  - [ /run/user/nginx.sh ]
+  - [ firewall-offline-cmd, --add-service=ssh, --zone=public ]
+  - [ firewall-offline-cmd, --add-service=http, --zone=public ]
+  - [ systemctl, enable, firewalld ]
+  - [ systemctl, start, firewalld ]
+  - [ systemctl, status, firewalld ]
+  - [ service, sshd, restart ]
+  - [ subscription-manager, refresh ]
+  - [ touch, /run/user/original_grub ]
+  - echo "Created /run/user/original_grub"
+  - [ cp, -f, /etc/default/grub, /run/user/original_grub]
+  - echo "Copied /etc/default/grub to /run/user/original_grub"
+  - [ sed, -i, -e, '/GRUB_CMDLINE_LINUX/s/"/@@"/g', /run/user/original_grub ]
+  - echo "Modified in-place /run/user/original_grub with SED"
+  - [ awk, -f, /run/user/awk-add-kernel-boot-settings.txt, /run/user/original_grub ]
+  - echo "Modified /run/user/original_grub with AWK and copied into /run/user/modified_grub"
+  - [ cp, -f, /run/user/modified_grub, /etc/default/grub ]
+  - echo "Copied /run/user/modified_grub into /etc/default/grub"
+  - [ grub2-mkconfig, -o, /boot/grub2/grub.cfg ]
+  - [ systemctl, enable, serial-getty@ttyS0.service ]
+  - [ systemctl, start, serial-getty@ttyS0.service ]
+  - [ systemctl, daemon-reload ]
+
+final_message: Machine with Nginx was setup successfully!

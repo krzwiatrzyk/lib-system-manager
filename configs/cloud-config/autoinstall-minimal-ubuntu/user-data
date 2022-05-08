@@ -1,0 +1,32 @@
+#docs: https://ubuntu.com/server/docs/install/autoinstall
+#docs: https://ubuntu.com/server/docs/install/autoinstall-reference
+#docs: https://cloudinit.readthedocs.io/en/latest/topics/format.html
+
+#cloud-config
+autoinstall:
+  version: 1
+  user-data:
+    hostname: minimal
+    users:
+      - name: krzwiatrzyk
+        # lock_passwd: true
+        # ssh_authorized_keys:
+        #   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9bAo+yzhzI/+FaeBj0i+HNy7O5BQ/mCMEHghvuAtH8XMJxGjikTPiC0t3YZ28XCyP+laRTVY6kdaWMCB5j40FE+UGco6YgXjW+dI0P/b0Idq+V9xTEJnPGL3M1uurQQuBClPs3Ns8aYUiNKxniQqFf4XrmGzqmNxtbtgrjXhrpApqx2u196iPf6/ZJtvZ0+VdwyEO5hNgHUbsDBSN7zicFfzCcbrDFCZ4d2NyC7gD76dh3/cmRSTYPS23UNfZi9eBj85bzG7CM0+eeHa4NbWWZR2iJcfgQ/EKb5TtYIHf4d6G7uGZ9dLbn3fyaxsTUA9LsMEOhjePV4IRrltsfXIXrR5+oQAJsUHxo0bOUQTP4h3sm55BRoZHJqfMmKQ42jAYK1ESuQi036hyocf+brTnkSTgo03XzHc3hGFtwNANa7pSBT/KMALzdJn6OBurrexB5tbLplb88R2R5INFuvzYEjiZ42YkfR3JJMWgU/YRbSTo+WBJeyI1eIpeTOGciis= dustin@dustin-desktop
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        passwd: $6$Fx5lEEl/lcr6K.Ou$tViPVtrvr3vdjRJK.pCzYzedKKKaqngzZ/wfGZ5mRyUjZ0CmZljJsJrv92ddtXhU92OP2eJBCWJfbWqb5CpLt/
+  ssh:
+    install-server: true
+  # network:
+  #   network:
+  #     version: 2
+  #     ethernets:
+  #       enwild:
+  #         match:
+  #           name: en*
+  #         addresses:
+  #           - 192.168.0.137/24
+  #         dhcp4: false
+  #         gateway4: 192.168.0.1
+  #         nameservers:
+  #           addresses:
+  #             - 192.168.0.1

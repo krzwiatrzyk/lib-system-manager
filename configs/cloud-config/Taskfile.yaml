@@ -1,0 +1,22 @@
+version: 3
+
+tasks:
+  install:tools:
+  - sudo apt-get install cloud-image-utils --yes
+  - sudo apt-get install cloud-init -y
+
+  create-autoinstall:
+    dir: autoinstall-minimal-ubuntu
+    cmds:
+    - cloud-localds ../../../tmp/autoinstall-minimal-ubuntu.iso user-data meta-data
+
+  create-cloud-config:
+    dir: cloud-config-minimal-ubuntu
+    cmds:
+    - cloud-localds ../../../tmp/cloud-config-minimal-ubuntu.iso user-data meta-data
+    #- genisoimage -output ../../../tmp/cloud-config-minimal-ubuntu.iso -volid cidata -joliet -rock meta-data user-data
+
+  validate:
+    dir: cloud-config-minimal-ubuntu
+    cmds:
+    - cloud-init devel schema --config-file user-data

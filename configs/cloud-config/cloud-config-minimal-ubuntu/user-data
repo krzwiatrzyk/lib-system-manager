@@ -1,0 +1,23 @@
+#cloud-config
+# chpasswd:
+#   expire: False
+#   list: |
+#     ec2-user: somepass
+users:
+  # - default
+  - name: krzwiatrzyk
+    lock_passwd: false
+    # ssh_authorized_keys:
+    #   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9bAo+yzhzI/+FaeBj0i+HNy7O5BQ/mCMEHghvuAtH8XMJxGjikTPiC0t3YZ28XCyP+laRTVY6kdaWMCB5j40FE+UGco6YgXjW+dI0P/b0Idq+V9xTEJnPGL3M1uurQQuBClPs3Ns8aYUiNKxniQqFf4XrmGzqmNxtbtgrjXhrpApqx2u196iPf6/ZJtvZ0+VdwyEO5hNgHUbsDBSN7zicFfzCcbrDFCZ4d2NyC7gD76dh3/cmRSTYPS23UNfZi9eBj85bzG7CM0+eeHa4NbWWZR2iJcfgQ/EKb5TtYIHf4d6G7uGZ9dLbn3fyaxsTUA9LsMEOhjePV4IRrltsfXIXrR5+oQAJsUHxo0bOUQTP4h3sm55BRoZHJqfMmKQ42jAYK1ESuQi036hyocf+brTnkSTgo03XzHc3hGFtwNANa7pSBT/KMALzdJn6OBurrexB5tbLplb88R2R5INFuvzYEjiZ42YkfR3JJMWgU/YRbSTo+WBJeyI1eIpeTOGciis= dustin@dustin-desktop
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    #passwd: $6$Fx5lEEl/lcr6K.Ou$tViPVtrvr3vdjRJK.pCzYzedKKKaqngzZ/wfGZ5mRyUjZ0CmZljJsJrv92ddtXhU92OP2eJBCWJfbWqb5CpLt/
+    plain_text_passwd: somepass
+write_files:
+  - path: /etc/cloud/cloud.cfg.d/80_disable_network_after_firstboot.cfg
+    content: |
+      # Disable network configuration after first boot
+      network:
+        config: disabled
+runcmd:
+  - [ systemctl, disable, ufw ]
+  - [ systemctl, stop, ufw ]
