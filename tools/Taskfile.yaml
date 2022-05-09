@@ -1,0 +1,23 @@
+version: 3
+
+tasks:
+  stormssh:install:
+  - pip install stormssh
+
+  stormssh:ui:
+  - storm web 8080
+
+  sops:install:
+  - arkade get sops
+
+  age:install:
+  - sudo apt install age -y
+
+  age:create-key:
+    cmds:
+    - age-keygen -o ${HOME}/.age
+    status:
+    - test -f ${HOME}/.age
+
+  direnv:install:
+  - sudo apt install direnv -y
