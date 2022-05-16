@@ -1,0 +1,3 @@
+[submodule "apps/tipi/module"]
+	path = apps/tipi/module
+	url = https://github.com/meienberger/runtipi

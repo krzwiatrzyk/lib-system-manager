@@ -1,0 +1,15 @@
+version: 3
+
+tasks:
+  start:
+    dir: module
+    cmds:
+    - sudo ./scripts/start.sh
+    preconditions:
+      - command -v docker
+      - '[ $(id -u) = "1000" ]'
+
+  stop:
+    dir: module
+    cmds:
+    - sudo ./scripts/stop.sh
