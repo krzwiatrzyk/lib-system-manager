@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  argus:
+    image: quay.io/argus-io/argus:0.4.1
+    volumes:
+      - ./config.yml:/etc/argus/config.yml
+    ports:
+      - 8080:8080
+    restart: always
