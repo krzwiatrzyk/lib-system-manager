@@ -1,6 +1,0 @@
-version: 3
-
-tasks:
-  start:
-  - docker run --rm -d -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower:latest --cleanup --run-once
-

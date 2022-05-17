@@ -1,0 +1,17 @@
+version: 3
+
+tasks:
+  create:
+  - docker run -d -p 8082:8000 -v /var/run/docker.sock:/var/run/docker.sock -v yacht:/config --name yacht selfhostedpro/yacht
+
+  start:
+  - docker start yacht
+
+  stop:
+  - docker stop yacht
+
+  remove:
+  - docker rm -f yacht
+
+# default login: admin@yacht.local
+# default password: pass
