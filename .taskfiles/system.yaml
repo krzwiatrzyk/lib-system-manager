@@ -7,8 +7,7 @@ tasks:
   show-used-dns:
     cmds:
       - systemd-resolve --status
-
-  
+      
   ssh:generate-key:
     dir: temp
     cmds:

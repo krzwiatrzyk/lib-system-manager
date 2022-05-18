@@ -5,9 +5,9 @@ vars:
   USER_STATUS_FILES_PATH: ~/.statusfiles
 
 includes:
-  zsh: .taskfiles/zsh.yaml
+  zsh: zsh/Taskfile.yaml
   tools: .taskfiles/tools.yaml
-  conky: .taskfiles/conky.yaml
+  conky: apps/conky/Taskfile.yaml
   dotfiles: .taskfiles/dotfiles.yaml
   server: .taskfiles/server.yaml
   system: .taskfiles/system.yaml

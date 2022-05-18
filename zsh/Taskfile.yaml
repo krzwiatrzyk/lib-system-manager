@@ -15,51 +15,47 @@ tasks:
   install:
     cmds:
     - sudo apt-get install zsh -y
-    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
     status:
-    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - command -v zsh
 
   set-as-default-shell:
     cmds:
-    - chsh -s $(which zsh)
-    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - sudo chsh -s $(which zsh) $(whoami)
     status:
-    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - cat /etc/passwd | grep ${USER} | cut -d ":" -f 7 | grep zsh
 
   oh-my-zsh:install:
     cmds:
-    - sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) && exit 0" 
-    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
     status:
-    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - test -d /home/${USER}/.oh-my-zsh
     interactive: true
 
   powerlevel10k:install:
     cmds:
     - sudo apt-get install fonts-font-awesome -y 
     - git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
     status:
-    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - test -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
   autosuggestions:install:
     cmds:
     - git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
     status:
-    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
   syntax-highlighting:install:
     cmds:
     - git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
     status:
-    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
   fuzzy-finder:install:
     dir: ~/.oh-my-zsh/custom/plugins
     cmds:
     - git clone https://github.com/unixorn/fzf-zsh-plugin.git fzf-zsh-plugin
+    status:
+    - test -d ~/.oh-my-zsh/custom/plugins/fzf-zsh-plugin
 
   fix-history:
     cmds:

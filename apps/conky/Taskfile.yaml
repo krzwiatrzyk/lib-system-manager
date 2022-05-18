@@ -1,0 +1,24 @@
+version: 3
+
+tasks:
+  install:
+    cmds:
+    - sudo apt-get install conky-all -y
+    status:
+    - command -v conky
+
+  conky-manager:install:
+  - sudo apt update && sudo apt install conky-manager2 -y
+
+  stop:
+  - killall conky
+
+  start:
+  - conky
+
+  copy:dotfile:
+  - cp dotfiles/.conkyrc ~/
+
+  copy:autostart:
+  - mkdir -p ~/.config/autostart || true
+  - cp autostart/conky.desktop ~/.config/autostart/
