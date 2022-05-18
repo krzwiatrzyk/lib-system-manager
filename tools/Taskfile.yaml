@@ -21,3 +21,21 @@ tasks:
 
   direnv:install:
   - sudo apt install direnv -y
+
+  pass:install:
+    cmds:
+    - sudo apt-get install -y pass
+    status:
+    - command -v pass
+
+  pass:init:
+    cmds:
+    - pass init {{ .CLI_ARGS }}
+    status:
+    - test -d ${HOME}/.password-store
+    preconditions:
+    - ARGS={{ .CLI_ARGS}}; echo ${ARGS?}
+
+  gpg:generate-key:
+    cmds:
+    - gpg --gen-key

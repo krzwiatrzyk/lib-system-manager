@@ -8,7 +8,7 @@ includes:
   zsh: zsh/Taskfile.yaml
   tools: .taskfiles/tools.yaml
   conky: apps/conky/Taskfile.yaml
-  dotfiles: .taskfiles/dotfiles.yaml
+  dotfiles: dotfiles/Taskfile.yaml
   server: .taskfiles/server.yaml
   system: .taskfiles/system.yaml
   git: .taskfiles/git.yaml

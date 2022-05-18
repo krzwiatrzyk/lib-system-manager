@@ -1,6 +1,12 @@
 version: 3
 
 tasks:
+  copy:all:
+  - task: copy:aliases
+  - task: copy:zshrc
+  - task: copy:p10k
+  - task: copy:envrc
+
   copy:aliases:
   - cp dotfiles/.aliases ~/.aliases
 
