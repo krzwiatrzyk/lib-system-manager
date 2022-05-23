@@ -1,0 +1,22 @@
+version: 3
+
+tasks:
+  install:requirements:
+  - sudo apt install libnetfilter-queue1 libappindicator3-1 -y
+
+  install:
+    deps:
+    - install:requirements
+    cmds:
+    - wget https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb
+    - sudo dpkg -i portmaster-installer.deb
+    - rm portmaster-installer.deb
+
+  start: 
+  - sudo systemctl start portmaster
+
+  stop:
+  - sudo systemctl stop portmaster
+
+  docs:
+  - firefox https://safing.io/portmaster/ 

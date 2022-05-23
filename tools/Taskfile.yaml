@@ -1,6 +1,12 @@
 version: 3
 
 tasks:
+  default: 
+  - task: list
+
+  list:
+    task --list-all | grep tools | grep ":install"
+
   stormssh:install:
   - pip install stormssh
 
@@ -39,3 +45,84 @@ tasks:
   gpg:generate-key:
     cmds:
     - gpg --gen-key
+
+
+
+  variety:install:
+    cmds:
+    - sudo apt-get install variety -y
+    desc: Variety is automatic wallpaper changer
+
+  neofetch:install:
+    cmds:
+    - sudo apt  install -y neofetch
+    desc: Neofetch displays system information 
+
+  cockpit:install:
+    cmds:
+    - sudo apt-get install -y cockpit
+    - systemctl enable cockpit
+    - systemctl start cockpit # port 9090
+    desc: Cockpit is a Web UI OS manager
+
+  stacer:install:
+    cmds:
+    - sudo apt-get install -y stacer
+    desc: Stacer is a Linux monitoring tools with nice UI
+    status:
+    - command -v stacer
+
+  gnome-shell-extensions:install:
+  - sudo apt install gnome-shell-extensions -y
+  - sudo apt install chrome-gnome-shell -y
+
+  flatpack:
+  - sudo apt install flatpak -y
+  - sudo apt install gnome-software-plugin-flatpak -y
+  - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+  xclip:
+  - sudo apt-get install xclip -y
+
+  apache-utils:
+  - sudo apt-get install apache2-utils -y
+
+  rich:install:
+    desc: Install rick-cli
+    cmds:
+    - pip install rich-cli
+
+  nodejs:install:
+    cmds:
+    - curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    - sudo apt-get update
+    - sudo apt install nodejs -y
+    - node -v
+    - sudo npm install -g npm
+  
+  git-conventional-commits:install:
+    deps:
+    - install:nodejs
+    cmds:
+    - sudo npm install --global git-conventional-commits
+
+  git-conventional-commits:init:
+    cmds:
+    - git-conventional-commits init
+
+  dialog:install:
+    desc: Install dialog
+    cmds:
+    - sudo apt-get install dialog
+
+  yq:install:
+    desc: Install yq
+    env:
+      BINARY: yq_linux_amd64
+      VERSION: v4.24.2 
+    cmds:
+    - sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
+    - sudo chmod +x /usr/bin/yq
+    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    status:
+    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}

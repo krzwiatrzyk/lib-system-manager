@@ -6,7 +6,7 @@ vars:
 
 includes:
   zsh: zsh/Taskfile.yaml
-  tools: .taskfiles/tools.yaml
+  tools: tools/Taskfile.yaml
   conky: apps/conky/Taskfile.yaml
   dotfiles: dotfiles/Taskfile.yaml
   server: .taskfiles/server.yaml

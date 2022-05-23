@@ -1,0 +1,40 @@
+version: 3
+
+# Default user and password is admin:admin
+
+tasks:
+  prepare:
+    cmds:
+    - sudo mkdir -p /apps/filebrowser
+    - sudo chown -R ${USER}:${USER} /apps/filebrowser
+    - touch /apps/filebrowser/database.db
+    status:
+    - test -d /apps/filebrowser
+
+  create:
+    cmds:
+    - >
+      docker run -d
+      -v /apps/filebrowser:/srv 
+      -v /apps/filebrowser/database.db:/database.db 
+      -u $(id -u):$(id -g) 
+      -p 8080:80 
+      --name filebrowser
+      filebrowser/filebrowser:v2.21.1
+
+      #-v /apps/filebrowser/.filebrowser.json:/.filebrowser.json 
+
+    status:
+    - docker ps -a | grep filebrowser
+    
+  stop:
+  - docker stop filebrowser
+
+  start:
+  - docker start filebrowser
+
+  delete:
+  - docker rm -f filebrowser
+
+  clean:
+  - rm -rf /apps/filebrowser/*
