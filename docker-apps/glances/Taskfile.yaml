@@ -1,0 +1,6 @@
+version: 3
+
+tasks:
+  create:
+  - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro --pid host -p 61208-61209:61208-61209 -e GLANCES_OPT="-w" -it nicolargo/glances:latest-full
+

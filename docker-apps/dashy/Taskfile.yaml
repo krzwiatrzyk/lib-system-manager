@@ -1,0 +1,11 @@
+version: 3
+
+tasks:
+  create:
+  - |
+    docker run -d \
+    -p 4000:80 \
+    -v /etc/dashy/conf.yml:/app/public/conf.yml \
+    --name my-dashboard \
+    --restart=always \
+    lissy93/dashy:latest
