@@ -1,2 +1,4 @@
 alias 1="cd ~/ubuntu-setup"
 alias 2="cd ~/local-cluster"
+
+alias git-fix="find .git/objects/ -size 0 -exec rm -f {} \; && git fetch origin"
