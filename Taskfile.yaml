@@ -5,23 +5,36 @@ vars:
   USER_STATUS_FILES_PATH: ~/.statusfiles
 
 includes:
-  zsh: zsh/Taskfile.yaml
+  zsh: 
+    taskfile: modules/zsh/Taskfile.yaml
+    dir: modules/zsh
   tools: tools/Taskfile.yaml
   conky: apps/conky/Taskfile.yaml
-  dotfiles: dotfiles/Taskfile.yaml
-  server: .taskfiles/server.yaml
-  system: .taskfiles/system.yaml
-  git: .taskfiles/git.yaml
+  dotfiles: 
+    taskfile: dotfiles/Taskfile.yaml
+    dir: dotfiles
+  server: modules/server.yaml
+  system: modules/system.yaml
+  git: 
+    taskfile: modules/git/Taskfile.yaml
+    dir: modules/git
   footloose: 
     taskfile: tools/footloose/Taskfile.yaml
     dir: tools/footloose
 
 tasks:
   default:
+  - task: git:pull
   - task: zsh:install-all
 
   list:
   - task -l
+
+  set:fix:
+  - task: zsh:copy:scripts
+  - task: git:copy:scripts
+  - task: dotfiles:copy:aliases
+
 
   argo-generate-password:
     cmds:
@@ -29,5 +42,3 @@ tasks:
     - echo $(date +%FT%T%Z)
 
 # to test: webmin, usermin, cloudmin, virtualmin , virtualmind, cloudpanel, aapanel
-
-

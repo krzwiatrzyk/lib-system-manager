@@ -1,0 +1,16 @@
+version: 3
+
+tasks:
+  prepare:directory:
+    cmds:
+    - mkdir ${HOME}/Shared
+    status:
+    - test -d ${HOME}/Shared
+    
+  start:fileserver:
+    desc: Starts python3 fileserver, serving ~/Shared dir on port 8080
+    dir: ~/Shared
+    cmds:
+    - python3 -m http.server 8000
+    summary: |
+      Press 'CTRL + C' to stop

@@ -7,16 +7,27 @@ tasks:
   list:
     task --list-all | grep tools | grep ":install"
 
-  stormssh:install:
+  install:essentials:
+  - task: install:stormssh
+  - task: install:sops
+  - task: install:age
+  - task: install:direnv
+  - task: install:pass
+  - task: install:yq
+  
+  install:desktop:
+  - task: install:stacer
+
+  install:stormssh:
   - pip install stormssh
 
   stormssh:ui:
   - storm web 8080
 
-  sops:install:
+  install:sops:
   - arkade get sops
 
-  age:install:
+  install:age:
   - sudo apt install age -y
 
   age:create-key:
@@ -25,10 +36,10 @@ tasks:
     status:
     - test -f ${HOME}/.age
 
-  direnv:install:
+  install:direnv:
   - sudo apt install direnv -y
 
-  pass:install:
+  install:pass:
     cmds:
     - sudo apt-get install -y pass
     status:
@@ -46,9 +57,7 @@ tasks:
     cmds:
     - gpg --gen-key
 
-
-
-  variety:install:
+  install:variety:
     cmds:
     - sudo apt-get install variety -y
     desc: Variety is automatic wallpaper changer
@@ -65,7 +74,7 @@ tasks:
     - systemctl start cockpit # port 9090
     desc: Cockpit is a Web UI OS manager
 
-  stacer:install:
+  install:stacer:
     cmds:
     - sudo apt-get install -y stacer
     desc: Stacer is a Linux monitoring tools with nice UI
@@ -115,7 +124,7 @@ tasks:
     cmds:
     - sudo apt-get install dialog
 
-  yq:install:
+  install:yq:
     desc: Install yq
     env:
       BINARY: yq_linux_amd64

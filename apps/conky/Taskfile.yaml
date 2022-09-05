@@ -22,3 +22,19 @@ tasks:
   copy:autostart:
   - mkdir -p ~/.config/autostart || true
   - cp autostart/conky.desktop ~/.config/autostart/
+
+  theme:conky_orange:
+    cmds:
+    - cmd: mkdir ~/.conky 
+      ignore_error: true
+    - cp themes/conky_orange/conkyrc_orange ~/.conky/conkyrc_orange
+    - cp themes/conky_orange/conky_orange.lua ~/.conky/conky_orange.lua
+
+  theme:aludra:
+    cmds:
+    - sudo apt-get install -y jq curl
+    - cmd: mkdir -p ~/.config/conky; mkdir -p ~/.fonts
+      ignore_error: true
+    - cp themes/Aludra/font/* ~/.fonts && fc-cache -fv
+    - cp -r themes/Aludra ~/.config/conky/
+

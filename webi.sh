@@ -7,11 +7,9 @@ sudo snap install task --classic
 # Install VS Code
 sudo snap install code --classic
 
-mkdir ~/Shared
-
-# Clone repository for Ubuntu machine management
-git clone https://github.com/krzwiatrzyk/lib-system-manager.git
+# Clone repository for machine management if it doesn't exist
+[[ ! -d "${HOME}/lib-system-manager" ]] && git clone https://github.com/krzwiatrzyk/lib-system-manager.git ${HOME}/lib-system-manager
 
 # Execute Ubuntu machine basic setup
-cd lib-system-manager
+cd ${HOME}/lib-system-manager
 task
