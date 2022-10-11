@@ -1,0 +1,16 @@
+version: 3
+
+tasks:
+  install:cargo:
+    cmds:
+    - sudo apt install -y cargo
+    status:
+    - command -v cargo
+
+  install:
+    desc: |
+      Topgrade - upgrade applications from different sources at once.
+    deps:
+    - install:cargo
+    cmds:
+    - cargo install topgrade
