@@ -1,2 +1,3 @@
 .taskfiles/statusfiles/*
 tmp/
+.task

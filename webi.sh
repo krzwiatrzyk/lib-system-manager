@@ -12,4 +12,6 @@ sudo snap install code --classic
 
 # Execute Ubuntu machine basic setup
 cd ${HOME}/lib-system-manager
-task
+
+# First task will result with error thanks to OhMyZSH installation script - it enters new shell by default
+task || task

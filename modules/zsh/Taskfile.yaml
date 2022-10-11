@@ -9,8 +9,8 @@ tasks:
   - task: autosuggestions:install
   - task: fuzzy-finder:install
   - task: syntax-highlighting:install
-  - task: :dotfiles:copy:zshrc
-  - task: :dotfiles:copy:p10k
+  - task: copy:dotfiles
+  - task: copy:scripts
 
   install:
     cmds:
@@ -51,9 +51,8 @@ tasks:
     - test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
   fuzzy-finder:install:
-    dir: ~/.oh-my-zsh/custom/plugins
     cmds:
-    - git clone https://github.com/unixorn/fzf-zsh-plugin.git fzf-zsh-plugin
+    - git clone https://github.com/unixorn/fzf-zsh-plugin.git ~/.oh-my-zsh/custom/plugins/fzf-zsh-plugin
     status:
     - test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin
 
@@ -67,10 +66,15 @@ tasks:
     
   copy:scripts:
     cmds:
-    - cmd: mkdir ~/.scripts
-      ignore_error: true
-    - cp scripts/fix-zsh.sh ~/.scripts
+    - mkdir -p ~/.scripts
+    - cp scripts/* ~/.scripts/
+    sources:
+    - scripts/*
 
   copy:dotfiles:
-  - cp .zshrc ~/.zshrc
-  - cp .p10k.zsh ~/.p10k.zsh
+    cmds:
+    - cp dotfiles/.zshrc ~/.zshrc
+    - cp dotfiles/.p10k.zsh ~/.p10k.zsh
+    sources:
+    - dotfiles/.zshrc
+    - dotfiles/.p10k.zsh

@@ -1,6 +1,12 @@
 version: '3'
 
 tasks:
+  configure:
+    cmds:
+    - git config --global credential.helper store
+    - git config --global user.email "krzwiatrzyk@protonmail.com"
+    - git config --global user.name "Krzysztof Wiatrzyk"
+
   configure:hooks:
     desc: "Configure git hooks"
     cmds:
