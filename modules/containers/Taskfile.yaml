@@ -1,0 +1,17 @@
+version: 3
+
+vars:
+  # -- Supported: nala | apt
+  INSTALLER: nala
+
+tasks:
+  docker:install:
+    cmds:
+    - sudo {{ .INSTALLER }} install -y docker-compose
+    - task: docker:configure
+    status:
+    - command -v docker
+
+  docker:configure:
+    cmds:
+    - sudo usermod -aG docker ${USER}

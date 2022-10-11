@@ -22,6 +22,7 @@ includes:
   dotfiles:
     taskfile: modules/dotfiles/Taskfile.yaml
     dir: modules/dotfiles
+  containers: modules/containers/Taskfile.yaml
   # footloose: 
   #   taskfile: tools/footloose/Taskfile.yaml
   #   dir: tools/footloose
@@ -34,6 +35,7 @@ tasks:
   - task: tools:install:essentials
   - task: tools:install:desktop
   - task: upgrades:topgrade:install
+  - task: containers:docker:install
 
   upgrade:
   - task: upgrades:topgrade:run
