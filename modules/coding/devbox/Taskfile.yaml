@@ -1,0 +1,17 @@
+version: 3
+
+tasks:
+  install:
+    preconditions:
+      - sh: command -v docker
+        msg: "Docker must be installed!"
+      - sh: command -v nix
+        msg: "Nix Package Manager must be installed!"
+    cmds:
+    - curl -fsSL https://get.jetpack.io/devbox | bash
+
+  install:nix:
+    cmds:
+    -  sh <(curl -L https://nixos.org/nix/install) --no-daemon
+    status:
+    - command -v nix

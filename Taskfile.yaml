@@ -26,6 +26,7 @@ includes:
   # footloose: 
   #   taskfile: tools/footloose/Taskfile.yaml
   #   dir: tools/footloose
+  coding: modules/coding/Taskfile.yaml
 
 tasks:
   default:
