@@ -3,10 +3,16 @@ version: 3
 tasks:
   copy:all:
   - task: copy:aliases
-  - task: copy:envrc
+  - task: copy:env
 
   copy:aliases:
-  - cp .aliases ~/.aliases
+    cmds:
+    - cp .aliases ~/.aliases
+    sources:
+    - .aliases
 
-  copy:envrc:
-  - cp .envrc ~/.envrc
+  copy:env:
+    cmds:
+    - cp .env ~/.env
+    sources:
+    - .env

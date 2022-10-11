@@ -1,5 +1,9 @@
 version: 3
 
+vars:
+   # -- Available installers: nala | apt
+  INSTALLER: nala
+
 tasks:
   default: 
   - task: list
@@ -8,27 +12,69 @@ tasks:
     task --list-all | grep tools | grep ":install"
 
   install:essentials:
-  - task: install:stormssh
+  - task: nala:install
+  - task: baobab:install
+  # - task: install:stormssh
   - task: install:sops
   - task: install:age
   - task: install:direnv
   - task: install:pass
   - task: install:yq
-  
+
   install:desktop:
   - task: install:stacer
+  - task: install:variety
+
+  nala:install:
+    cmds:
+    - sudo apt install -y nala 
+    status:
+    - command -v nala
+
+  arkade:install:
+    cmds:
+    - curl -sLS https://get.arkade.dev | sudo sh
+    status:
+    - command -v arkade
+
+  pip:install:
+    cmds:
+    - sudo {{ .INSTALLER }} install -y pip
+    status:
+    - command -v pip
+
+  baobab:install:
+    cmds:
+    - sudo  {{ .INSTALLER }} install -y baobab
+    status:
+    - command -v baobab
+
+
 
   install:stormssh:
-  - pip install stormssh
+    deps:
+    - pip:install
+    cmds:
+    - pip install stormssh
+    status:
+    - command -v stormssh
 
   stormssh:ui:
   - storm web 8080
 
   install:sops:
-  - arkade get sops
+    deps:
+    - arkade:install
+    cmds:
+    - arkade get sops
+    status:
+    - command -v sops
 
   install:age:
-  - sudo apt install age -y
+    cmds:
+    - sudo  {{ .INSTALLER }} install age -y
+    status:
+    - command -v age
 
   age:create-key:
     cmds:
@@ -37,11 +83,14 @@ tasks:
     - test -f ${HOME}/.age
 
   install:direnv:
-  - sudo apt install direnv -y
+    cmds:
+    - sudo  {{ .INSTALLER }} install direnv -y
+    status:
+    - command -v direnv
 
   install:pass:
     cmds:
-    - sudo apt-get install -y pass
+    - sudo  {{ .INSTALLER }} install -y pass
     status:
     - command -v pass
 
@@ -59,53 +108,57 @@ tasks:
 
   install:variety:
     cmds:
-    - sudo apt-get install variety -y
+    - sudo {{ .INSTALLER }} install variety -y
     desc: Variety is automatic wallpaper changer
+    status:
+    - command -v variety
 
   neofetch:install:
     cmds:
-    - sudo apt  install -y neofetch
+    - sudo {{ .INSTALLER }} install -y neofetch
     desc: Neofetch displays system information 
 
   cockpit:install:
     cmds:
-    - sudo apt-get install -y cockpit
+    - sudo {{ .INSTALLER }} install -y cockpit
     - systemctl enable cockpit
     - systemctl start cockpit # port 9090
     desc: Cockpit is a Web UI OS manager
 
   install:stacer:
     cmds:
-    - sudo apt-get install -y stacer
+    - sudo {{ .INSTALLER }} install -y stacer
     desc: Stacer is a Linux monitoring tools with nice UI
     status:
     - command -v stacer
 
   gnome-shell-extensions:install:
-  - sudo apt install gnome-shell-extensions -y
-  - sudo apt install chrome-gnome-shell -y
+  - sudo {{ .INSTALLER }} install gnome-shell-extensions -y
+  - sudo {{ .INSTALLER }} install chrome-gnome-shell -y
 
   flatpack:
-  - sudo apt install flatpak -y
-  - sudo apt install gnome-software-plugin-flatpak -y
+  - sudo {{ .INSTALLER }} install flatpak -y
+  - sudo {{ .INSTALLER }} install gnome-software-plugin-flatpak -y
   - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
   xclip:
-  - sudo apt-get install xclip -y
+  - sudo {{ .INSTALLER }}install xclip -y
 
   apache-utils:
-  - sudo apt-get install apache2-utils -y
+  - sudo a{{ .INSTALLER }} install apache2-utils -y
 
   rich:install:
     desc: Install rick-cli
+    deps:
+    - pip:install
     cmds:
     - pip install rich-cli
 
   nodejs:install:
     cmds:
     - curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-    - sudo apt-get update
-    - sudo apt install nodejs -y
+    - sudo {{ .INSTALLER }} update
+    - sudo {{ .INSTALLER }} install nodejs -y
     - node -v
     - sudo npm install -g npm
   
@@ -122,7 +175,7 @@ tasks:
   dialog:install:
     desc: Install dialog
     cmds:
-    - sudo apt-get install dialog
+    - sudo {{ .INSTALLER }} install dialog -y
 
   install:yq:
     desc: Install yq
@@ -132,6 +185,5 @@ tasks:
     cmds:
     - sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
     - sudo chmod +x /usr/bin/yq
-    - touch {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
     status:
-    - test -f {{ .USER_STATUS_FILES_PATH }}/{{ .TASK }}
+    - command -v yq

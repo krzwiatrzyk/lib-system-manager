@@ -6,6 +6,8 @@ tasks:
     - git config --global credential.helper store
     - git config --global user.email "krzwiatrzyk@protonmail.com"
     - git config --global user.name "Krzysztof Wiatrzyk"
+    status:
+    - git config --list | grep krzwiatrzyk
 
   configure:hooks:
     desc: "Configure git hooks"

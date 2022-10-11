@@ -9,7 +9,7 @@ includes:
   zsh: 
     taskfile: modules/zsh/Taskfile.yaml
     dir: modules/zsh
-  # tools: tools/Taskfile.yaml
+  tools: modules/tools/Taskfile.yaml
   # conky: apps/conky/Taskfile.yaml
   # dotfiles: 
   #   taskfile: dotfiles/Taskfile.yaml
@@ -19,14 +19,24 @@ includes:
   git: 
     taskfile: modules/git/Taskfile.yaml
     dir: modules/git
+  dotfiles:
+    taskfile: modules/dotfiles/Taskfile.yaml
+    dir: modules/dotfiles
   # footloose: 
   #   taskfile: tools/footloose/Taskfile.yaml
   #   dir: tools/footloose
 
 tasks:
   default:
-  - task: zsh:install-all
+  - task: zsh:install:all
+  - task: dotfiles:copy:all
   - task: git:configure
+  - task: tools:install:essentials
+  - task: tools:install:desktop
+  - task: upgrades:topgrade:install
+
+  upgrade:
+  - task: upgrades:topgrade:run
 
   # list:
   # - task -l

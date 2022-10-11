@@ -14,3 +14,7 @@ tasks:
     - install:cargo
     cmds:
     - cargo install topgrade
+
+  run:
+    cmds:
+    - topgrade
