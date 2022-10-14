@@ -1,0 +1,27 @@
+# Container Linux Config
+# should be transpiled with tool called `ct` - Config Transpiler - into Ignition file
+
+passwd:
+  users:
+    - name: krzwiatrzyk
+      # Password generated using:
+      # python3 -c "import crypt,random,string; print(crypt.crypt(input('clear-text password: '), '\$6\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)])))"
+      password_hash: "$6$iDO00wpflVhF8dVh$zhH5arGn4tDsYKVFAoUNUBLBnfUjZgtNTqcNYLWUVbcUWqpq1GCafeBY38Nq5PSUGOPTc73QIlj5rSz11pTTu0"
+      groups:
+      - wheel
+      - docker
+      # ssh_authorized_keys:
+      #   - key1
+
+# systemd:
+#   units:
+#     - name: firewalld
+#       enabled: false
+
+storage:
+  files:
+    - filesystem: "root"
+      path:       "/etc/hostname"
+      mode:       0644
+      contents:
+        inline: flatcar
