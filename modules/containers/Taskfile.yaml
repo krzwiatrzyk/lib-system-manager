@@ -15,3 +15,17 @@ tasks:
   docker:configure:
     cmds:
     - sudo usermod -aG docker ${USER}
+
+  kubectl:install:
+    cmds:
+    - arkade get kubectl
+    status:
+    - command -v kubectl
+
+  kubectl:plugins:install:
+    cmds:
+    - arkade get krew
+    - krew install switch-config
+    status:
+    - arkade get krew
+    - krew install switch-config

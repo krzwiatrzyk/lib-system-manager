@@ -37,6 +37,8 @@ tasks:
   - task: tools:install:desktop
   - task: upgrades:topgrade:install
   - task: containers:docker:install
+  - task: containers:kubectl:install
+  - task: containers:kubectl:plugins:install
 
   upgrade:
   - task: upgrades:topgrade:run
