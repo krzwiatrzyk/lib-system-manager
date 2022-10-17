@@ -5,6 +5,7 @@ version: 3
   # USER_STATUS_FILES_PATH: ~/.statusfiles
 
 includes:
+  package-manager: modules/package-manager/Taskfile.yaml
   upgrades: modules/upgrades/Taskfile.yaml
   zsh: 
     taskfile: modules/zsh/Taskfile.yaml
@@ -39,6 +40,8 @@ tasks:
   - task: containers:docker:install
   - task: containers:kubectl:install
   - task: containers:kubectl:plugins:install
+  - task: package-manager:nix:install
+  - task: coding:vendir:install
 
   upgrade:
   - task: upgrades:topgrade:run

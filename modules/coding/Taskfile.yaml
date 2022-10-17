@@ -4,3 +4,4 @@ includes:
   devbox:
     taskfile: devbox/Taskfile.yaml
     dir: devbox
+  vendir: vendir/Taskfile.yaml

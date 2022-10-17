@@ -1,0 +1,8 @@
+version: 3
+
+tasks:
+  install:
+    cmds:
+    - nix-env -iA nixpkgs.vendir
+    status:
+    - command -v vendir
