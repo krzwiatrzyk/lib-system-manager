@@ -33,7 +33,7 @@ tasks:
       git commit -m "feat(fast): ${DATE}" || echo
     - task: push
 
-  add: git add . || echo 
+  add: git add . 
   push: git push origin main || echo
 
   fix: 
