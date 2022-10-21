@@ -5,6 +5,13 @@ vars:
   INSTALLER: nala
 
 tasks:
+  paranoia:install:
+    cmds:
+    - sudo wget https://github.com/jetstack/paranoia/releases/download/v0.2.0/paranoia-linux-amd64 -O /usr/local/bin/paranoia
+    - sudo chmod +x /usr/local/bin/paranoia
+    status:
+    - command -v paranoia 
+
   docker:install:
     cmds:
     - sudo {{ .INSTALLER }} install -y docker-compose
