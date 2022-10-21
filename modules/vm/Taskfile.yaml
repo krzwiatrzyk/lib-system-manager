@@ -1,0 +1,6 @@
+version: 3
+
+includes:
+  flatcar: 
+    taskfile: flatcar/Taskfile.yaml
+    dir: flatcar

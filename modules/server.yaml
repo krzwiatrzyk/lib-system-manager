@@ -7,7 +7,7 @@ tasks:
   #   status:
   #   - test -d ${HOME}/Shared
     
-  start:fileserver:
+  start:
     desc: Starts python3 fileserver, serving ~/Public dir on port 8080
     dir: ~/Public
     cmds:

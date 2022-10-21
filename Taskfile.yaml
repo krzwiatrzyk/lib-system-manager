@@ -28,6 +28,8 @@ includes:
   #   taskfile: tools/footloose/Taskfile.yaml
   #   dir: tools/footloose
   coding: modules/coding/Taskfile.yaml
+  server: modules/server.yaml
+  vm: modules/vm/Taskfile.yaml
 
 tasks:
   default:

@@ -1,0 +1,88 @@
+# Container Linux Config
+# should be transpiled with tool called `ct` - Config Transpiler - into Ignition file
+
+passwd:
+  users:
+    - name: krzwiatrzyk
+      # Password generated using:
+      # python3 -c "import crypt,random,string; print(crypt.crypt(input('clear-text password: '), '\$6\$' + ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)])))"
+      password_hash: "$6$iDO00wpflVhF8dVh$zhH5arGn4tDsYKVFAoUNUBLBnfUjZgtNTqcNYLWUVbcUWqpq1GCafeBY38Nq5PSUGOPTc73QIlj5rSz11pTTu0"
+      groups:
+      - wheel
+      - docker
+      # ssh_authorized_keys:
+      #   - key1
+
+storage:
+  files:
+    - filesystem: "root"
+      path:       "/etc/hostname"
+      mode:       0644
+      contents:
+        inline: bayek
+    - path: /opt/k3s-install.sh
+      filesystem: root
+      mode: 777
+      contents:
+        remote:
+          url: https://get.k3s.io
+  filesystems:
+    - name: backups
+      mount:
+        device: /dev/disk/by-label/backups
+        format: ext4
+        wipe_filesystem: false
+        label: backups
+    - name: data
+      mount:
+        device: /dev/disk/by-label/data
+        format: ext4
+        wipe_filesystem: false
+        label: data
+
+
+systemd:
+  units:
+    - name: iscsid
+      enabled: true
+    - name: mnt-backups.mount
+      enabled: true
+      contents: |
+        [Unit]
+        Before=local-fs.target
+        [Mount]
+        What=/dev/disk/by-label/backups
+        Where=/mnt/backups
+        Type=ext4
+        [Install]
+        WantedBy=local-fs.target
+    - name: mnt-data.mount
+      enabled: true
+      contents: |
+        [Unit]
+        Before=local-fs.target
+        [Mount]
+        What=/dev/disk/by-label/data
+        Where=/mnt/data
+        Type=ext4
+        [Install]
+        WantedBy=local-fs.target 
+    - name: sshd.service
+      enabled: true
+    - name: k3s-install.service
+      enabled: true 
+      contents: |
+        [Unit]
+        Description=Run K3s script
+        Wants = network-online.target
+        After = network.target network-online.target        
+        ConditionPathExists=/opt/k3s-install.sh
+        ConditionPathExists=!/opt/bin/k3s
+        [Service]
+        Type=forking
+        TimeoutStartSec=180
+        RemainAfterExit=yes
+        KillMode=process
+        ExecStart=/usr/bin/sh -c "/opt/k3s-install.sh --disable servicelb --disable local-storage --disable traefik"
+        [Install]
+        WantedBy=multi-user.target    
