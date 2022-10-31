@@ -25,6 +25,12 @@ tasks:
   - task: install:stacer
   - task: install:variety
 
+  install:lazygit:
+    cmds:
+    - brew install lazygit
+    status:
+    - command -v lazygit
+
   nala:install:
     cmds:
     - sudo apt install -y nala 

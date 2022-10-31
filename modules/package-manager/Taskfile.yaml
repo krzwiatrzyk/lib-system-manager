@@ -2,3 +2,4 @@ version: 3
 
 includes:
   nix: nix/Taskfile.yaml
+  homebrew: homebrew/Taskfile.yaml

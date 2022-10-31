@@ -43,6 +43,7 @@ tasks:
   - task: containers:kubectl:install
   - task: containers:kubectl:plugins:install
   - task: package-manager:nix:install
+  - task: package-manager:homebrew:install
   - task: coding:vendir:install
 
   upgrade:
