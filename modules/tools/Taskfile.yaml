@@ -20,6 +20,12 @@ tasks:
   - task: install:direnv
   - task: install:pass
   - task: install:yq
+  - task: install:tldr
+  
+  install:tldr:
+    cmds:
+    - sudo {{ .INSTALLER }} install -y tldr
+    - tldr -u
 
   install:desktop:
   - task: install:stacer
