@@ -19,7 +19,7 @@ includes:
   # system: modules/system.yaml
   git: 
     taskfile: modules/git/Taskfile.yaml
-    dir: modules/git
+    # dir: modules/git
   dotfiles:
     taskfile: modules/dotfiles/Taskfile.yaml
     dir: modules/dotfiles
@@ -36,14 +36,15 @@ tasks:
   - task: zsh:install:all
   - task: dotfiles:copy:all
   - task: git:configure
+  - task: package-manager:nix:install
+  - task: package-manager:homebrew:install
+  - task: upgrades:topgrade:install
   - task: tools:install:essentials
   - task: tools:install:desktop
-  - task: upgrades:topgrade:install
   - task: containers:docker:install
   - task: containers:kubectl:install
   - task: containers:kubectl:plugins:install
-  - task: package-manager:nix:install
-  - task: package-manager:homebrew:install
+
   - task: coding:vendir:install
 
   upgrade:

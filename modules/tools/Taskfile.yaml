@@ -21,11 +21,21 @@ tasks:
   - task: install:pass
   - task: install:yq
   - task: install:tldr
+  - task: install:gum
+
+  install:gum:
+    cmds:
+    - brew install gum
+    status:
+    - command -v gum
+
   
   install:tldr:
     cmds:
     - sudo {{ .INSTALLER }} install -y tldr
     - tldr -u
+    status:
+    - command -v tldr
 
   install:desktop:
   - task: install:stacer
