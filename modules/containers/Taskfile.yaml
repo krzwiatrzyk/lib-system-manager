@@ -5,6 +5,10 @@ vars:
   INSTALLER: nala
 
 tasks:
+  essentials:install:
+  - task: kubectl:install
+  - task: kubectl:plugins:install 
+
   paranoia:install:
     cmds:
     - sudo wget https://github.com/jetstack/paranoia/releases/download/v0.2.0/paranoia-linux-amd64 -O /usr/local/bin/paranoia
@@ -33,6 +37,11 @@ tasks:
     cmds:
     - arkade get krew
     - krew install switch-config
+    - krew install ctx
+    - krew install ns
+    - krew install view-serviceaccount-kubeconfig
+    - krew install assert
+    - krew install view-secret
     status:
-    - arkade get krew
-    - krew install switch-config
+    - command -v krew
+    - kubectl plugin list | grep ctx
