@@ -41,9 +41,7 @@ tasks:
   - task: upgrades:topgrade:install
   - task: tools:install:essentials
   - task: tools:install:desktop
-  - task: containers:docker:install
-  - task: containers:kubectl:install
-  - task: containers:kubectl:plugins:install
+  - task: containers:essentials:install
 
   - task: coding:vendir:install
 

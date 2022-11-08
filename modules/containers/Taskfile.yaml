@@ -8,6 +8,9 @@ tasks:
   essentials:install:
   - task: kubectl:install
   - task: kubectl:plugins:install 
+  - task: helm:install
+  - task: helm:plugins:install
+  - task: trivy:install
 
   paranoia:install:
     cmds:
@@ -45,3 +48,23 @@ tasks:
     status:
     - command -v krew
     - kubectl plugin list | grep ctx
+
+  helm:install:
+    cmds:
+    - arkade get helm
+    status:
+    - command -v helm
+
+  helm:plugins:install:
+    cmds:
+    - helm plugin install https://github.com/komodorio/helm-dashboard.git
+    - helm plugin install https://github.com/jkroepke/helm-secrets
+    status:
+    - helm plugin list | grep secrets
+    - helm plugin list | grep dashboard
+
+  trivy:install:
+    cmds:
+    - arkade get trivy
+    status:
+    - command -v trivy
