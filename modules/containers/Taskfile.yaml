@@ -11,6 +11,8 @@ tasks:
   - task: helm:install
   - task: helm:plugins:install
   - task: trivy:install
+  - task: steampipe:install
+  - task: steampipe:plugins:install
 
   paranoia:install:
     cmds:
@@ -68,3 +70,42 @@ tasks:
     - arkade get trivy
     status:
     - command -v trivy
+
+  steampipe:install:
+    cmds:
+    - sudo /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe/main/install.sh)"
+    status:
+    - command -v steampipe
+  
+  steampipe:plugins:install:
+    deps:
+    - steampipe:install
+    cmds:
+    - steampipe plugin install kubernetes
+    status:
+    - steampipe plugin list | grep kubernetes
+
+  steampipe:mods:install:
+    deps:
+    - steampipe:install
+    cmds:
+    - mkdir -p ~/.steampipe/mods
+    - git clone https://github.com/turbot/steampipe-mod-kubernetes-compliance ~/.steampipe/mods/kubernetes-compliance
+    - git clone https://github.com/turbot/steampipe-mod-kubernetes-insights ~/.steampipe/mods/kubernetes-insights
+    status:
+    - test -d ~/.steampipe/mods/kubernetes-compliance
+    - test -d ~/.steampipe/mods/kubernetes-insights
+
+  steampipe:mod:kubernetes-compliance:
+    dir: ~/.steampipe/mods/kubernetes-compliance
+    deps:
+    - steampipe:mods:install
+    cmds: 
+    - steampipe dashboard
+
+  steampipe:mod:kubernetes-insights:
+    dir: ~/.steampipe/mods/kubernetes-insights
+    deps:
+    - steampipe:mods:install 
+    cmds:
+    - steampipe dashboard
