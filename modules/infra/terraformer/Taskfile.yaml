@@ -1,0 +1,16 @@
+version: 3
+
+tasks:
+  install:
+    cmds:
+    - brew install terraformer
+    status:
+    - command -v terraformer
+
+  demo:
+    dir: demo
+    cmds:
+    - terraform init
+    - terraformer import kubernetes --resources=services
+    - terraformer plan kubernetes --resources=ingresses
+    - terraformer import plan generated/kubernetes/terraformer/plan.json

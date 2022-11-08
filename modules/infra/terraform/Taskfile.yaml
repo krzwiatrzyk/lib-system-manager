@@ -1,0 +1,8 @@
+version: 3
+
+tasks:
+  install:
+    cmds:
+    - arkade get terraform
+    status:
+    - command -v terraform
