@@ -109,3 +109,12 @@ tasks:
     - steampipe:mods:install 
     cmds:
     - steampipe dashboard
+
+
+  lazytrivy:install:
+    cmds:
+    - wget -nc -O lazytrivy https://github.com/owenrumney/lazytrivy/releases/download/v1.0.2/lazytrivy-linux-amd64
+    - chmod +x lazytrivy
+    - sudo mv lazytrivy /usr/local/bin/lazytrivy
+    status:
+    - command -v lazytrivy
