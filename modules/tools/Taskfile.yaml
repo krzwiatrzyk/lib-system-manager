@@ -131,9 +131,14 @@ tasks:
   install:variety:
     cmds:
     - sudo {{ .INSTALLER }} install variety -y
+    - task: variety:fix
     desc: Variety is automatic wallpaper changer
     status:
     - command -v variety
+
+  variety:fix:
+    cmds:
+    - sed -i '/^# Gnome 3, Unity*/a gsettings set org.gnome.desktop.background picture-uri-dark "file://$WP" 2> /dev/null' /home/$USER/.config/variety/scripts/set_wallpaper
 
   neofetch:install:
     cmds:

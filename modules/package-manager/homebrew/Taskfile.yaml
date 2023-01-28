@@ -1,8 +1,17 @@
 version: 3
 
+vars:
+  INSTALLER: nala
+
 tasks:
   install:
+    deps:
+    - install:build-essential
     cmds:
     - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     status:
     - command -v brew
+
+  install:build-essential:
+    cmds:
+    - sudo {{ .INSTALLER }} install -y build-essential
