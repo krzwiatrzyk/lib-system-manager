@@ -5,6 +5,7 @@ version: 3
   # USER_STATUS_FILES_PATH: ~/.statusfiles
 
 includes:
+  apps: modules/apps/Taskfile.yaml
   package-manager: modules/package-manager/Taskfile.yaml
   upgrades: modules/upgrades/Taskfile.yaml
   zsh: 
@@ -53,6 +54,7 @@ tasks:
   - task: containers:essentials:install
 
   - task: coding:vendir:install
+  - task: apps:notion:install
 
   upgrade:
   - task: upgrades:topgrade:run

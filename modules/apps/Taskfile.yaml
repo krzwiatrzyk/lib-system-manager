@@ -1,0 +1,9 @@
+version: 3
+
+tasks:
+  install:notion:
+    cmds:
+    - sudo snap install notion-snap
+    status:
+    - command -v notion
+
