@@ -5,5 +5,5 @@ tasks:
     cmds:
     - sudo snap install notion-snap
     status:
-    - command -v notion
+    - command -v notion-snap
 

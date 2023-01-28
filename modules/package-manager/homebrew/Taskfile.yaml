@@ -15,3 +15,5 @@ tasks:
   install:build-essential:
     cmds:
     - sudo {{ .INSTALLER }} install -y build-essential
+    status:
+    - command -v gcc
