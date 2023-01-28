@@ -54,7 +54,7 @@ tasks:
   - task: containers:essentials:install
 
   - task: coding:vendir:install
-  - task: apps:notion:install
+  - task: apps:install:notion
 
   upgrade:
   - task: upgrades:topgrade:run
