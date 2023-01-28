@@ -7,7 +7,7 @@ tasks:
     - git config --global user.email "krzwiatrzyk@protonmail.com"
     - git config --global user.name "Krzysztof Wiatrzyk"
     status:
-    - git config --list | grep krzwiatrzyk
+    - git config --list | grep "krzwiatrzyk@protonmail.com"
 
   configure:hooks:
     desc: "Configure git hooks"

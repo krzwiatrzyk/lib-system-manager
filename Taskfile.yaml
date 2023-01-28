@@ -36,6 +36,8 @@ tasks:
   - task: zsh:install:all
   - task: dotfiles:copy:all
   - task: git:configure
+  - task: git:creds
+    
   - task: package-manager:nix:install
   - task: package-manager:homebrew:install
   - task: tools:install:essentials
@@ -54,6 +56,11 @@ tasks:
 
   upgrade:
   - task: upgrades:topgrade:run
+
+  git:creds:
+    run: once
+    cmds:
+    - task: git:commit:fast
 
   # list:
   # - task -l
