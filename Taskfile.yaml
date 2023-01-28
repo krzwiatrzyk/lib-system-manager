@@ -51,6 +51,7 @@ tasks:
   - task: upgrades:topgrade:install
   - task: tools:install:essentials
   - task: tools:install:desktop
+  - task: coding:devbox:install
   - task: containers:essentials:install
 
   - task: coding:vendir:install
