@@ -31,6 +31,9 @@ includes:
   coding: modules/coding/Taskfile.yaml
   server: modules/server.yaml
   vm: modules/vm/Taskfile.yaml
+  dana: 
+    internal: true
+    taskfile: profiles/dana.yaml
 
 tasks:
   default:
@@ -65,7 +68,6 @@ tasks:
     cmds:
     - task: git:commit:fast
 
-  dana:
 
   fail: echo "Provide a profile"
 
