@@ -2,6 +2,6 @@ version: 3
 
 tasks:
   default:
-  - task: :nala:install
+  - task: :tools:nala:install
   - task: :kubernetes:k3s:install
   - task: :containers:docker:install
