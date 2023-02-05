@@ -31,9 +31,9 @@ includes:
   coding: modules/coding/Taskfile.yaml
   server: modules/server.yaml
   vm: modules/vm/Taskfile.yaml
-  dana: 
+  dina: 
     internal: true
-    taskfile: profiles/dana.yaml
+    taskfile: profiles/dina.yaml
   kubernetes: modules/kubernetes/Taskfile.yaml
 
 tasks:
