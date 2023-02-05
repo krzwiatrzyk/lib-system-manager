@@ -32,7 +32,6 @@ includes:
   server: modules/server.yaml
   vm: modules/vm/Taskfile.yaml
   dina: 
-    internal: true
     taskfile: profiles/dina.yaml
   kubernetes: modules/kubernetes/Taskfile.yaml
 
