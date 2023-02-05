@@ -65,6 +65,8 @@ tasks:
     cmds:
     - task: git:commit:fast
 
+  dana:
+
   # list:
   # - task -l
 
