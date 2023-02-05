@@ -2,4 +2,5 @@ version: 3
 
 tasks:
   default:
+  - task: :kubernetes:k3s:install
   - task: :containers:docker:install

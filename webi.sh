@@ -1,5 +1,7 @@
 set -e
 
+PROFILE=$1
+
 # Install essentials
 sudo apt-get install -y terminator git curl
 
