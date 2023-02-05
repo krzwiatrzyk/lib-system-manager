@@ -1,4 +1,4 @@
-PROFILE=${$1:?error}
+set -e
 
 # Install essentials
 sudo apt-get install -y terminator git curl
@@ -17,4 +17,4 @@ cd ${HOME}/lib-system-manager
 
 # # First task will result with error thanks to OhMyZSH installation script - it enters new shell by default
 # task || task
-task ${PROFILE}
+task ${PROFILE:-fail}

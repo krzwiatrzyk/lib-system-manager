@@ -67,6 +67,8 @@ tasks:
 
   dana:
 
+  fail: echo "Provide a profile"
+
   # list:
   # - task -l
 
