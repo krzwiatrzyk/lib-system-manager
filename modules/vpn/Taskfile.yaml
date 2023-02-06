@@ -1,0 +1,8 @@
+version: 3
+
+tasks:
+  tailscale:install:
+    cmds:
+    - curl -fsSL https://tailscale.com/install.sh | sh
+    status:
+    - command -v tailscale
