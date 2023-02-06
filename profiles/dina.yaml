@@ -6,3 +6,4 @@ tasks:
   - task: :kubernetes:k3s:install
   - task: :containers:docker:install
   - task: :vpn:tailscale:install
+  - task: :vpn:tailscale:start
