@@ -34,6 +34,7 @@ includes:
   dina: 
     taskfile: profiles/dina.yaml
   kubernetes: modules/kubernetes/Taskfile.yaml
+  vpn: modules/vpn/Taskfile.yaml
 
 tasks:
   default:

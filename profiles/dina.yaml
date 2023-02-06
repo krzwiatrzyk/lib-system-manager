@@ -5,3 +5,4 @@ tasks:
   - task: :tools:nala:install
   - task: :kubernetes:k3s:install
   - task: :containers:docker:install
+  - task: :vpn:tailscale:install
