@@ -11,4 +11,4 @@ tasks:
   k3s:
   - task: :kubernetes:k3s:install
     vars:
-      EXTRA: --tls-san 100.101.53.109 --tls-san dina
+      EXTRA: --tls-san 100.101.53.109 --tls-san dina --tls-san mirai.comet-nessie.ts.net
