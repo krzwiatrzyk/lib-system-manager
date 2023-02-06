@@ -11,4 +11,4 @@ tasks:
     cmds:
     - sudo tailscale up --ssh
     status:
-    - sudo tailscale status
+    - tailscale status
