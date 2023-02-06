@@ -6,3 +6,9 @@ tasks:
     - curl -fsSL https://tailscale.com/install.sh | sh
     status:
     - command -v tailscale
+
+  tailscale:start: 
+    cmds:
+    - tailscale up --ssh
+    status:
+    - tailscale status
