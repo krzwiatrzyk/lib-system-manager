@@ -9,6 +9,6 @@ tasks:
 
   tailscale:start: 
     cmds:
-    - tailscale up --ssh
+    - sudo tailscale up --ssh
     status:
-    - tailscale status
+    - sudo tailscale status
