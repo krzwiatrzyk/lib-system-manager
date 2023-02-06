@@ -5,7 +5,7 @@ tasks:
     env:
       INSTALL_K3S_VERSION: v1.26.1+k3s1
     cmds:
-    - curl -sfL https://get.k3s.io | sh -s - server --disable local-storage --disable traefik
+    - curl -sfL https://get.k3s.io | sh -s - server --disable local-storage --disable traefik {{ .EXTRA }}
     status:
     - command -v k3s
     

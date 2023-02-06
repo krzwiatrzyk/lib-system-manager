@@ -4,6 +4,8 @@ tasks:
   default:
   - task: :tools:nala:install
   - task: :kubernetes:k3s:install
+    vars:
+      EXTRA: --tls-san 100.101.53.109 --tls-san dina
   - task: :containers:docker:install
   - task: :vpn:tailscale:install
   - task: :vpn:tailscale:start
