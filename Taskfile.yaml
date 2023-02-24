@@ -31,8 +31,8 @@ includes:
   coding: modules/coding/Taskfile.yaml
   server: modules/server.yaml
   vm: modules/vm/Taskfile.yaml
-  dina: 
-    taskfile: profiles/dina.yaml
+  dina: profiles/dina.yaml
+  portainer: profiles/portainer.yaml
   kubernetes: modules/kubernetes/Taskfile.yaml
   vpn: modules/vpn/Taskfile.yaml
 

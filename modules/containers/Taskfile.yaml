@@ -4,6 +4,11 @@ vars:
   # -- Supported: nala | apt
   INSTALLER: nala
 
+includes:
+  portainer:
+    dir: portainer
+    taskfile: portainer/Taskfile.yaml
+
 tasks:
   essentials:install:
   - task: kubectl:install

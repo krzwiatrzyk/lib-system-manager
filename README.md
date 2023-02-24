@@ -8,3 +8,4 @@ To prepare new machine according to webi script enter:
 
 - desktop
 - dina
+- portainer
