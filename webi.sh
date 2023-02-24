@@ -6,8 +6,8 @@ PROFILE=$1
 sudo apt-get install -y terminator git curl
 
 # Install Taskfile
-sudo snap install task --classic
-
+# sudo snap install task --classic
+sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
 # # Install VS Code
 # sudo snap install code --classic
 
