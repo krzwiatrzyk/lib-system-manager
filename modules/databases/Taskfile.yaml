@@ -1,0 +1,6 @@
+version: 3
+
+tasks:
+  postgresql-client:install:
+    cmds:
+    - sudo nala install -y postgresql-client
