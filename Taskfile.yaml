@@ -35,6 +35,7 @@ includes:
   portainer: profiles/portainer.yaml
   kubernetes: modules/kubernetes/Taskfile.yaml
   vpn: modules/vpn/Taskfile.yaml
+  lgd: profiles/lgd.yaml
 
 tasks:
   default:
