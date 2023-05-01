@@ -7,3 +7,6 @@ tasks:
     status:
     - command -v notion-snap
 
+  install:openshot:
+  - sudo add-apt-repository ppa:openshot.developers/ppa
+  - sudo nala install openshot-qt python3-openshot
