@@ -36,6 +36,8 @@ includes:
   kubernetes: modules/kubernetes/Taskfile.yaml
   vpn: modules/vpn/Taskfile.yaml
   lgd: profiles/lgd.yaml
+  collaboration: modules/collaboration/Taskfile.yaml
+  garrus: profiles/garrus.yaml
 
 tasks:
   default:
@@ -43,7 +45,6 @@ tasks:
   - task: dotfiles:copy:all
   - task: git:configure
   - task: git:creds
-    
   - task: package-manager:nix:install
   - task: package-manager:homebrew:install
   - task: tools:install:essentials
