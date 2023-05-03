@@ -36,9 +36,11 @@ tasks:
   add: git add . 
   push: git push origin main || echo
 
-  fix: 
-  - find .git/objects/ -size 0 -delete 
-  - git fetch
+  fix:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+    - find .git/objects/ -size 0 -delete 
+    - git fetch
 
   pull:
   - task: fix

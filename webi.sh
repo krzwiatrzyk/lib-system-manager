@@ -12,7 +12,8 @@ sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/lo
 # sudo snap install code --classic
 
 # Clone repository for machine management if it doesn't exist
-[[ ! -d "${HOME}/lib-system-manager" ]] && git clone https://github.com/krzwiatrzyk/lib-system-manager.git ${HOME}/lib-system-manager
+[[ ! -d "${HOME}/.task" ]] && git clone https://github.com/krzwiatrzyk/lib-system-manager.git ${HOME}/.task
+cp ${HOME}/.task/modules/global/Taskfile.yaml ${HOME}/Taskfile.yaml
 
 # Execute Ubuntu machine basic setup
 cd ${HOME}/lib-system-manager

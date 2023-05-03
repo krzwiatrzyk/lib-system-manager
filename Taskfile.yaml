@@ -40,28 +40,12 @@ includes:
   garrus: profiles/garrus.yaml
 
 tasks:
-  default:
-  - task: zsh:install:all
-  - task: dotfiles:copy:all
-  - task: git:configure
-  - task: git:creds
-  - task: package-manager:nix:install
-  - task: package-manager:homebrew:install
-  - task: tools:install:essentials
-  - task: tools:install:desktop
-  - task: upgrades:topgrade:install
-  - task: containers:docker:install
-  - task: containers:kubectl:install
-  - task: containers:kubectl:plugins:install
-  - task: containers:lazytrivy:install
-  - task: upgrades:topgrade:install
-  - task: tools:install:essentials
-  - task: tools:install:desktop
-  - task: coding:devbox:install
-  - task: containers:essentials:install
+  test:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+    - pwd
 
-  - task: coding:vendir:install
-  - task: apps:install:notion
+  test2: pwd
 
   upgrade:
   - task: upgrades:topgrade:run
@@ -70,7 +54,6 @@ tasks:
     run: once
     cmds:
     - task: git:commit:fast
-
 
   fail: echo "Provide a profile"
 
