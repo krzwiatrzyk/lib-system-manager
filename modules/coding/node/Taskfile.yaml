@@ -5,6 +5,8 @@ tasks:
   - curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -s - 
 
   install:not-working:
+    platforms:
+      - linux
     deps:
     - install:repo
     cmds:
