@@ -5,3 +5,4 @@ includes:
     taskfile: devbox/Taskfile.yaml
     dir: devbox
   vendir: vendir/Taskfile.yaml
+  node: node/Taskfile.yaml

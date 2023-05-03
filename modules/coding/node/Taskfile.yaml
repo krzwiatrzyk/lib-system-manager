@@ -1,0 +1,29 @@
+version: 3
+
+tasks:
+  install:repo:
+  - curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -s - 
+
+  install:not-working:
+    deps:
+    - install:repo
+    cmds:
+    - sudo nala install nodejs -y
+    - node -v
+
+  install:nvm:
+    cmds:
+    - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    status:
+    - command -v nvm
+
+  nvm:versions: nvm list && vvm list-remote
+
+  nvm:18:
+    deps:
+    - install:nvm
+    cmds:
+    - nvm install v18.16.0
+    - node -v
+    status:
+    - node -v | grep 18
