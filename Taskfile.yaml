@@ -38,6 +38,7 @@ includes:
   lgd: profiles/lgd.yaml
   collaboration: modules/collaboration/Taskfile.yaml
   garrus: profiles/garrus.yaml
+  secrets: modules/secrets
 
 tasks:
   test:
