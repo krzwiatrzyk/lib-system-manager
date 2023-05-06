@@ -4,3 +4,15 @@ tasks:
   postgresql-client:install:
     cmds:
     - sudo nala install -y postgresql-client
+
+  mongo-compass:install:
+    platforms:
+      - linux
+    cmds:
+    - wget -nc https://downloads.mongodb.com/compass/mongodb-compass_1.35.0_amd64.deb
+    - defer: rm mongodb-compass_1.35.0_amd64.deb
+    - sudo nala install -y install libgconf-2-4
+    - sudo dpkg -i mongodb-compass_1.35.0_amd64.deb
+    status:
+    - command -v mongo-compass
+    
