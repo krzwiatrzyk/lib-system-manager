@@ -1,0 +1,21 @@
+version: 3
+
+tasks:
+  default:
+  - task: :tools:nala:install
+  - task: k3s
+  # - task: :containers:docker:install
+  # - task: :vpn:tailscale:install
+  # - task: :vpn:tailscale:start
+
+  k3s:
+  - task: :kubernetes:k3s:install
+
+
+  # fs:fix:
+  # - sysctl fs.inotify.max_user_watches #display
+  # - sysctl fs.inotify.max_user_instances # display
+  # - sysctl -w fs.inotify.max_user_watches=524288
+  # - sysctl -w fs.inotify.max_user_instances=256
+  # - sudo echo “fs.inotify.max_user_watches=524288” >> /etc/sysctl.conf
+  # - sudo echo "fs.inotify.max_user_instances=256" >> /etc/sysctl.conf

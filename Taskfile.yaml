@@ -42,6 +42,11 @@ includes:
   databases: modules/databases
 
 tasks:
+  commit: 
+  - git add .
+  - git commit -m "commit"
+  - git push origin main
+
   test:
     dir: '{{.USER_WORKING_DIR}}'
     cmds:
