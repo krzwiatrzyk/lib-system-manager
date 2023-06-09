@@ -39,6 +39,7 @@ includes:
   collaboration: modules/collaboration/Taskfile.yaml
   garrus: profiles/garrus.yaml
   secrets: modules/secrets
+  mirai: profiles/mirai.yaml
   databases: modules/databases
 
 tasks:
