@@ -1,0 +1,18 @@
+version: 3
+
+tasks:
+  cockpit:install:
+    cmds:
+    - sudo apt-get install cockpit -y
+    - sudo systemctl enable --now cockpit.socket
+    - sudo ufw allow 9090
+    status:
+    - command -v cockpit
+
+  cockpit:podman:
+    cmds:
+    - sudo apt-get install podman cockpit-podman -y
+    - sudo systemctl enable --now podman
+    status:
+    - command -v podman
+

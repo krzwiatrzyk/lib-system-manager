@@ -11,6 +11,9 @@ tasks:
   k3s:
   - task: :kubernetes:k3s:install
 
+  management:
+  - task: :management:cockpit:install
+
   notifications:
   - task: :notifications:ntfy:ssh
 
