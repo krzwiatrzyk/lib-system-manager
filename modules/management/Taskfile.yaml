@@ -7,7 +7,7 @@ tasks:
     - sudo systemctl enable --now cockpit.socket
     - sudo ufw allow 9090
     status:
-    - command -v cockpit
+    - systemctl is-active cockpit.socket
 
   cockpit:podman:
     cmds:
