@@ -11,6 +11,9 @@ tasks:
   k3s:
   - task: :kubernetes:k3s:install
 
+  notifications:
+  - task: :notifications:ntfy:ssh
+
 
   # fs:fix:
   # - sysctl fs.inotify.max_user_watches #display
