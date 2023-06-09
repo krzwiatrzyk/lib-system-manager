@@ -41,6 +41,9 @@ includes:
   secrets: modules/secrets
   mirai: profiles/mirai.yaml
   databases: modules/databases
+  notifications: 
+    taskfile: modules/notifications/Taskfile.yaml
+    dir: modules/notifications
 
 tasks:
   commit: 
