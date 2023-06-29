@@ -6,3 +6,13 @@ includes:
     dir: devbox
   vendir: vendir/Taskfile.yaml
   node: node/Taskfile.yaml
+
+  install:d2:
+    cmds:
+    - curl -fsSL https://d2lang.com/install.sh | sh -s --
+    status:
+    - command -v d2
+
+  install:essentials:
+    deps:
+    - install:d2
