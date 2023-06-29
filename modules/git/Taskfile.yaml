@@ -2,7 +2,11 @@ version: '3'
 
 tasks:
   configure:credential-helper:
+    cmds:
     - git config --global credential.helper store
+    status:
+    - git config credential.helper | grep store
+
   configure:
     cmds:
     - git config --global credential.helper store
