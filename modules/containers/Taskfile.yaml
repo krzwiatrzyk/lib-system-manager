@@ -16,9 +16,11 @@ tasks:
   - task: helm:install
   - task: helm:plugins:install
   - task: trivy:install
+  - task: lazydocker:install
+
+  extras:install:
   - task: steampipe:install
   - task: steampipe:plugins:install
-  - task: lazydocker:install
 
   paranoia:install:
     cmds:

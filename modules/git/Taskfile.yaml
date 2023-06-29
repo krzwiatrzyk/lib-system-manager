@@ -1,6 +1,8 @@
 version: '3'
 
 tasks:
+  configure:credential-helper:
+    - git config --global credential.helper store
   configure:
     cmds:
     - git config --global credential.helper store

@@ -3,3 +3,14 @@ version: 3
 tasks:
   default:
   - task: :tools:nala:install
+  - task: :zsh:install:all
+  - task: :dotfiles:copy:all
+  - task: :git:configure:credential-helper
+  - task: :package-manager:nix:install
+  - task: :package-manager:homebrew:install
+  - task: :tools:install:essentials
+  - task: :containers:docker:install
+  - task: :containers:kubectl:install
+  - task: :containers:kubectl:plugins:install
+  - task: :containers:lazytrivy:install
+  - task: :containers:essentials:install
