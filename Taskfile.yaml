@@ -45,6 +45,7 @@ includes:
     taskfile: modules/notifications/Taskfile.yaml
     dir: modules/notifications
   management: modules/management
+  aws: modules/aws
 
 tasks:
   commit: 

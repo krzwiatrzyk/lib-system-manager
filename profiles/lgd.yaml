@@ -14,3 +14,4 @@ tasks:
   - task: :containers:kubectl:plugins:install
   - task: :containers:lazytrivy:install
   - task: :containers:essentials:install
+  - task: :aws:install:awscli

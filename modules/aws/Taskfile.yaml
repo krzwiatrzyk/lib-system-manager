@@ -1,0 +1,11 @@
+version: 3
+
+vars:
+  INSTALLER: nala
+
+tasks:
+  install:awscli:
+    cmds:
+    - sudo {{ .INSTALLER }} install -y awscli 
+    status:
+    - command -v awscli
