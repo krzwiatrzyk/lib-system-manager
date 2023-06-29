@@ -1,0 +1,12 @@
+version: 3
+
+tasks:
+  install:essentials:
+    deps:
+    - install:k6
+
+  install:k6:
+    cmds:
+    - brew install k6
+    status:
+    - command -v k6 

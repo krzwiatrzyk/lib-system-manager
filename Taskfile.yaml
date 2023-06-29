@@ -46,6 +46,7 @@ includes:
     dir: modules/notifications
   management: modules/management
   aws: modules/aws
+  networking: modules/networking
 
 tasks:
   commit: 

@@ -16,3 +16,4 @@ tasks:
   - task: :containers:essentials:install
   - task: :aws:install:awscli
   - task: :coding:install:essentials
+  - task: :networking:install:essentials
