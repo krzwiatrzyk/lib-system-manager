@@ -4,11 +4,11 @@ tasks:
   default:
   - task: :zsh:install:all
   - task: :tools:nala:install
+  - task: :package-manager:nix:install
+  - task: :package-manager:homebrew:install
   - task: :tools:install:essentials
   - task: :dotfiles:copy:all
   - task: :git:configure:credential-helper
-  - task: :package-manager:nix:install
-  - task: :package-manager:homebrew:install
   - task: :containers:docker:install
   - task: :containers:kubectl:install
   - task: :containers:kubectl:plugins:install
