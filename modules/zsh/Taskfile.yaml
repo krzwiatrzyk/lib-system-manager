@@ -84,11 +84,11 @@ tasks:
     cmds:
     - mkdir -p ~/.oh-my-zsh/completions
     - wget https://raw.githubusercontent.com/go-task/task/master/completion/zsh/_task -O ~/.oh-my-zsh/completions/_task
-    - |
-      gum style \
-      --foreground 212 --border-foreground 212 --border double \
-      --align center --width 50 --margin "1 2" --padding "2 4" \
-      'Run: compinit' 
+    # - |
+    #   gum style \
+    #   --foreground 212 --border-foreground 212 --border double \
+    #   --align center --width 50 --margin "1 2" --padding "2 4" \
+    #   'Run: compinit' 
     status:
     - test -f ~/.oh-my-zsh/completions/_task
  
