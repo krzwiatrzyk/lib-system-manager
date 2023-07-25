@@ -3,8 +3,8 @@ version: 3
 tasks:
   ntfy:ssh:
     cmds:
-    - cp ntfy-ssh-login.sh /usr/bin/ntfy-ssh-login.sh
-    - cp sshd.conf /etc/pam.d/sshd
+    - sudo cp ntfy-ssh-login.sh /usr/bin/ntfy-ssh-login.sh
+    - sudo cp sshd.conf /etc/pam.d/sshd
     sources:
     - ntfy-ssh-login.sh
     - sshd.conf
