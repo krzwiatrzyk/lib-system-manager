@@ -7,6 +7,9 @@ tasks:
     status:
     - command -v tailscale
 
+# For modprobe issues
+# https://github.com/tailscale/tailscale/issues/825#issuecomment-775296495 
+
   tailscale:start: 
     cmds:
     - sudo modprobe tun
