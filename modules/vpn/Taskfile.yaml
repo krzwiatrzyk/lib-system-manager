@@ -9,6 +9,8 @@ tasks:
 
   tailscale:start: 
     cmds:
+    - sudo modprobe tun
+    - sudo systemctl start tailscaled
     - sudo tailscale up --ssh
     status:
     - tailscale status
