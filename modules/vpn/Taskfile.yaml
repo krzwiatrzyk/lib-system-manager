@@ -9,11 +9,10 @@ tasks:
 
 # For modprobe issues
 # https://github.com/tailscale/tailscale/issues/825#issuecomment-775296495 
+# https://dustri.org/b/running-tailscale-inside-of-a-proxmox-container.html 
 
   tailscale:start: 
     cmds:
-    - sudo modprobe tun
-    - sudo systemctl start tailscaled
     - sudo tailscale up --ssh
     status:
     - tailscale status
