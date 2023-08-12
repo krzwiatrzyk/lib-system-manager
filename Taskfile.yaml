@@ -41,6 +41,7 @@ includes:
   secrets: modules/secrets
   mirai: profiles/mirai.yaml
   databases: modules/databases
+  osbserver: profiles/observer.yaml
   notifications: 
     taskfile: modules/notifications/Taskfile.yaml
     dir: modules/notifications
