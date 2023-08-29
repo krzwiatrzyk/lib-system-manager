@@ -48,6 +48,7 @@ includes:
   management: modules/management
   aws: modules/aws
   networking: modules/networking
+  databaser: profiles/databaser.yaml
 
 tasks:
   commit: 
