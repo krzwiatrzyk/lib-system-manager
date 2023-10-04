@@ -12,7 +12,10 @@ tasks:
 # https://dustri.org/b/running-tailscale-inside-of-a-proxmox-container.html 
 
   tailscale:start: 
+    # vars:
+    #   KEY:
+    #     sh: "gum input --prompt='Tailscale auth key: ' --password"
     cmds:
-    - sudo tailscale up --ssh
+    - sudo tailscale up --ssh # --auth-key {{ .KEY }}
     status:
     - tailscale status
