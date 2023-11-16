@@ -21,5 +21,3 @@ tasks:
   - task: :coding:devbox:install
   - task: :containers:essentials:install
   - task: :coding:vendir:install
-  - task: :apps:install:notion
-  - task: :collaboration:slack:install
