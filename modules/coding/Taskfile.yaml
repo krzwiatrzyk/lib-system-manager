@@ -6,6 +6,7 @@ includes:
     dir: devbox
   vendir: vendir/Taskfile.yaml
   node: node/Taskfile.yaml
+  go: go/Taskfile.yaml
 
 tasks:
   install:d2:

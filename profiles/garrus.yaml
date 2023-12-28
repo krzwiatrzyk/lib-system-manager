@@ -21,3 +21,4 @@ tasks:
   - task: :coding:devbox:install
   - task: :containers:essentials:install
   - task: :coding:vendir:install
+  - task: :coding:go:install

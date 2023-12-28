@@ -31,8 +31,6 @@ includes:
   coding: modules/coding/Taskfile.yaml
   server: modules/server.yaml
   vm: modules/vm/Taskfile.yaml
-  dina: profiles/dina.yaml
-  portainer: profiles/portainer.yaml
   kubernetes: modules/kubernetes/Taskfile.yaml
   vpn: modules/vpn/Taskfile.yaml
   lgd: profiles/lgd.yaml
@@ -41,14 +39,12 @@ includes:
   secrets: modules/secrets
   mirai: profiles/mirai.yaml
   databases: modules/databases
-  observer: profiles/observer.yaml
   notifications: 
     taskfile: modules/notifications/Taskfile.yaml
     dir: modules/notifications
   management: modules/management
   aws: modules/aws
   networking: modules/networking
-  databaser: profiles/databaser.yaml
 
 tasks:
   commit: 

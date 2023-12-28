@@ -1,9 +1,0 @@
-version: 3
-
-tasks:
-  default:
-  - task: :tools:nala:install
-  - task: :containers:docker:install
-  - task: :vpn:tailscale:install
-  - task: :vpn:tailscale:start
-  - task: :notifications:ntfy:ssh
