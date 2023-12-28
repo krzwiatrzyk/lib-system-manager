@@ -1,0 +1,8 @@
+version: 3
+
+tasks:
+  d2:install:
+    cmds:
+    - curl -fsSL https://d2lang.com/install.sh | sh -s --
+    status:
+    - command -v d2

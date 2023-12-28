@@ -35,7 +35,7 @@ includes:
   vpn: modules/vpn/Taskfile.yaml
   lgd: profiles/lgd.yaml
   collaboration: modules/collaboration/Taskfile.yaml
-  garrus: profiles/garrus.yaml
+  ubuntu: profiles/ubuntu.yaml
   secrets: modules/secrets
   mirai: profiles/mirai.yaml
   databases: modules/databases

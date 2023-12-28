@@ -4,6 +4,9 @@ vars:
    # -- Available installers: nala | apt
   INSTALLER: nala
 
+includes:
+  diagrams: ./diagrams/Taskfile.yaml
+
 tasks:
   default: 
   - task: list
