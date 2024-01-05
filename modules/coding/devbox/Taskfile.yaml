@@ -9,6 +9,8 @@ tasks:
         msg: "Nix Package Manager must be installed!"
     cmds:
     - curl -fsSL https://get.jetpack.io/devbox | bash
+    status:
+    - command -v devbox
 
   install:nix:
     cmds:
