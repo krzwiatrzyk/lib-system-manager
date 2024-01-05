@@ -25,13 +25,19 @@ tasks:
   - task: install:yq
   - task: install:tldr
   - task: install:gum
+  - task: install:bat
+
+  install:bat:
+    cmds:
+    - brew install bat
+    status:
+    - command -v bat
 
   install:gum:
     cmds:
     - brew install gum
     status:
     - command -v gum
-
   
   install:tldr:
     cmds:
