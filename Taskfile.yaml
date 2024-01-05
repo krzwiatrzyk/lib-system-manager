@@ -62,11 +62,6 @@ tasks:
   upgrade:
   - task: upgrades:topgrade:run
 
-  git:creds:
-    run: once
-    cmds:
-    - task: git:commit:fast
-
   fail: echo "Provide a profile"
 
   # list:
