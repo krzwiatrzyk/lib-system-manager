@@ -5,3 +5,7 @@ alias fix-git="~/.scripts/fix-git.sh"
 if command -v bat > /dev/null; then
   alias cat="bat --paging=never --theme=DarkNeon"
 fi
+
+if ! command -v pbcopy > /dev/null; then
+  alias pbcopy="xclip -sel clip"
+fi
