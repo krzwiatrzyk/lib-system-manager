@@ -3,3 +3,18 @@ version: 3
 includes:
   nix: nix/Taskfile.yaml
   homebrew: homebrew/Taskfile.yaml
+  topgrade: topgrade/Taskfile.yaml
+
+tasks:
+  install:essentials:
+    cmds:
+    - task: nala:install
+    - task: nix:install
+    - task: homebrew:install
+    - task: topgrade:install
+
+  nala:install:
+    cmds:
+    - sudo apt install -y nala 
+    status:
+    - command -v nala

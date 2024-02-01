@@ -6,7 +6,5 @@ To prepare new machine according to webi script enter:
 
 ## Profiles
 
-- desktop
-- dina
-- portainer
-- lgd
+- ubuntu
+- mirai

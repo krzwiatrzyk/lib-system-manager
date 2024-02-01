@@ -10,7 +10,8 @@ includes:
     taskfile: portainer/Taskfile.yaml
 
 tasks:
-  essentials:install:
+  install:essentials:
+  - task: docker:install
   - task: kubectl:install
   - task: kubectl:plugins:install 
   - task: helm:install

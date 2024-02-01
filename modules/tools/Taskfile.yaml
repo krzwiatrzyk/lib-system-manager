@@ -15,7 +15,6 @@ tasks:
     task --list-all | grep tools | grep ":install"
 
   install:essentials:
-  - task: nala:install
   - task: baobab:install
   # - task: install:stormssh
   - task: install:sops
@@ -26,6 +25,13 @@ tasks:
   - task: install:tldr
   - task: install:gum
   - task: install:bat
+  - task: install:cowsay
+
+  install:cowsay:
+    cmds:
+    - sudo {{ .INSTALLER }} install -y cowsay
+    status:
+    - command -v cowsay
 
   install:bat:
     cmds:
@@ -56,11 +62,6 @@ tasks:
     status:
     - command -v lazygit
 
-  nala:install:
-    cmds:
-    - sudo apt install -y nala 
-    status:
-    - command -v nala
 
   arkade:install:
     cmds:
@@ -79,8 +80,6 @@ tasks:
     - sudo  {{ .INSTALLER }} install -y baobab
     status:
     - command -v baobab
-
-
 
   install:stormssh:
     deps:
@@ -140,7 +139,7 @@ tasks:
   install:variety:
     cmds:
     - sudo {{ .INSTALLER }} install variety -y
-    - task: variety:fix
+    #- task: variety:fix
     desc: Variety is automatic wallpaper changer
     status:
     - command -v variety

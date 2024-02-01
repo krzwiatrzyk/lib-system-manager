@@ -11,4 +11,4 @@ tasks:
     - /usr/local/go/bin/go version
     - cowsay "Remember to reload shell"
     status:
-    - go version | grep {{ .VERSION }}
+    - /usr/local/go/bin/go version | grep {{ .VERSION }}

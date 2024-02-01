@@ -6,8 +6,9 @@ version: 3
 
 includes:
   apps: modules/apps/Taskfile.yaml
-  package-manager: modules/package-manager/Taskfile.yaml
-  upgrades: modules/upgrades/Taskfile.yaml
+  package-manager: 
+    taskfile: modules/package-manager/Taskfile.yaml
+    dir: modules/package-manager
   zsh: 
     taskfile: modules/zsh/Taskfile.yaml
     dir: modules/zsh
@@ -33,7 +34,6 @@ includes:
   vm: modules/vm/Taskfile.yaml
   kubernetes: modules/kubernetes/Taskfile.yaml
   vpn: modules/vpn/Taskfile.yaml
-  lgd: profiles/lgd.yaml
   collaboration: modules/collaboration/Taskfile.yaml
   ubuntu: profiles/ubuntu.yaml
   secrets: modules/secrets
@@ -60,7 +60,7 @@ tasks:
   test2: pwd
 
   upgrade:
-  - task: upgrades:topgrade:run
+  - task: package-manager:topgrade:run
 
   fail: echo "Provide a profile"
 

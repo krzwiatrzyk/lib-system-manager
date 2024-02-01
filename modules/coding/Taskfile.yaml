@@ -18,3 +18,6 @@ tasks:
   install:essentials:
     deps:
     - install:d2
+    - go:install
+    - vendir:install
+    - devbox:install
