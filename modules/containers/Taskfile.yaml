@@ -133,3 +133,14 @@ tasks:
     - brew install lazydocker
     status:
     - command -v lazydocker
+
+  velero:install:
+    cmds:
+    # - brew install velero
+    - gh release download --repo vmware-tanzu/velero --skip-existing --pattern velero-*-{{ OS }}-{{ ARCH }}.tar.gz
+    - defer: rm velero-*-{{ OS }}-{{ ARCH }}.tar.gz
+    - tar -xvf velero-*-{{ OS }}-{{ ARCH }}.tar.gz
+    - sudo mv velero-*-{{ OS }}-{{ ARCH }}/velero /usr/local/bin/velero
+    - defer: rm -rf velero-*-{{ OS }}-{{ ARCH }}
+    status:
+    - command -v velero
