@@ -1,0 +1,11 @@
+version: 3
+
+tasks:
+  default:
+    
+    deps:
+    - :coding:go:install
+    - :tools:install:cowsay
+    - :dotfiles:copy:all
+    - :zsh:copy:dotfiles
+    - :zsh:syntax-highlighting:install

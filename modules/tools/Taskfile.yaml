@@ -1,7 +1,7 @@
 version: 3
 
 vars:
-   # -- Available installers: nala | apt
+   # -- Available installers: nala | apt | brew?
   INSTALLER: nala
 
 includes:
@@ -29,7 +29,12 @@ tasks:
 
   install:cowsay:
     cmds:
-    - sudo {{ .INSTALLER }} install -y cowsay
+    - cmd: sudo {{ .INSTALLER }} install -y cowsay
+      platforms:
+        - linux
+    - cmd: brew install cowsay
+      platforms:
+        - darwin
     status:
     - command -v cowsay
 

@@ -1,5 +1,8 @@
 {
     "cSpell.enableFiletypes": [
         "!yaml"
-    ]
+    ],
+    "yaml.schemas": {
+        "https://taskfile.dev/schema.json": "file:///Users/krzysztof.wiatrzyk/private-workspace/lib-system-manager/profiles/macos.yaml"
+    }
 }

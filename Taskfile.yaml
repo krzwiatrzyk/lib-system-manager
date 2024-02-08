@@ -38,6 +38,7 @@ includes:
   ubuntu: profiles/ubuntu.yaml
   secrets: modules/secrets
   mirai: profiles/mirai.yaml
+  macos: profiles/macos.yaml
   databases: modules/databases
   notifications: 
     taskfile: modules/notifications/Taskfile.yaml
@@ -71,3 +72,10 @@ tasks:
   # - task: zsh:copy:scripts
   # - task: git:copy:scripts
   # - task: dotfiles:copy:aliases
+
+  info:
+    cmds:
+    - |
+      echo "OS: {{ OS }}"
+    - |
+      echo "ARCH: {{ ARCH }}"
